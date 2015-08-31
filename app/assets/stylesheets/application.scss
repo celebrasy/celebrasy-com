@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+ *= require font-awesome
+ *= require bootstrap
+ *= require mvpready-admin
+ *= require_tree .
+ *= require_self
+ */
+
+.navbar-brand {
+  line-height: 54px;
+}
+
+.sec-nav-menu {
+  margin-top: -40px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+
+  .content {
+    margin-bottom: 0;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    margin-left: -10px;
+
+    > li {
+      float: left;
+
+      a {
+        display: block;
+        color: #87a3bc;
+        padding: 10px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      &:hover {
+        background-color: #f4f4f4
+      }
+    }
+  }
+}
+
+.leagues {
+  .layout {
+    margin-top: 0;
+  }
+}

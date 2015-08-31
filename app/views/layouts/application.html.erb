@@ -1,14 +1,120 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Celebrasy</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Celebrasy</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<%= yield %>
+    <!-- Google Font: Open Sans -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,800,800italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
 
-</body>
+
+    <base href="/" />
+<meta name="fantasy-celebrity-front-end/config/environment" content="%7B%22modulePrefix%22%3A%22fantasy-celebrity-front-end%22%2C%22environment%22%3A%22production%22%2C%22baseURL%22%3A%22/%22%2C%22locationType%22%3A%22auto%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%7D%2C%22APP%22%3A%7B%22name%22%3A%22fantasy-celebrity-front-end%22%2C%22version%22%3A%220.0.0.62f260d0%22%7D%2C%22exportApplicationGlobal%22%3Afalse%7D" />
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="<%= controller.controller_name.to_s + "." + controller.action_name.to_s %>">
+    <div id="wrapper">
+      <%= render "/layouts/navbar" %>
+
+      <div class="mainnav ">
+        <div class="container">
+
+          <a class="mainnav-toggle" data-toggle="collapse" data-target=".mainnav-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fa fa-bars"></i>
+          </a>
+
+          <nav class="collapse mainnav-collapse" role="navigation">
+            <ul class="mainnav-menu">
+              <li class="dropdown is-open">
+                <a href="/leagues/{{ model.id }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                  League {{ model.id }}
+                  <i class="mainnav-caret"></i>
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="/leagues/{{ model.league_id }}">
+                      <i class="fa fa-dashboard dropdown-icon "></i> 
+                      Dashboard
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="/leagues/{{ model.league_id }}/positions">
+                      <i class="fa fa-dashboard dropdown-icon "></i> 
+                      Positions
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="/leagues/{{ model.league_id }}/scoring">
+                      <i class="fa fa-dashboard dropdown-icon "></i> 
+                      Scoring
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="/leagues/{{ model.league_id }}/teams/1"> My Team </a>
+              </li>
+
+              <li>
+                <a href="leagues/{{ model.league_id }}/players">
+                  Players
+                </a>
+              </li>
+
+              <li>
+                <a href="leagues/{{ model.league_id }}/points">
+                  Points
+                </a>
+              </li>
+
+              <li>
+                <a href="leagues/{{ model.league_id }}/standings">
+                  Standings
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="container">
+          <%= yield %>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <p class="pull-left">Copyright &copy; Geoff.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="assets/jquery.slimscroll.min.js"></script>
+    <script src="assets/mvpready-core.js"></script>
+    <script src="assets/mvpready-helpers.js"></script>
+    <script src="assets/mvpready-admin.js"></script>
+
+    <script src="assets/jquery.flot.js"></script>
+    <script src="assets/jquery.flot.pie.js"></script>
+    <script src="assets/jquery.flot.resize.js"></script>
+    <script src="assets/jquery.flot.time.js"></script>
+    <script src="assets/jquery.flot.stack.js"></script>
+    <script src="assets/jquery.flot.categories.js"></script>
+    <script src="assets/jquery.flot.tooltip.js"></script>
+  </body>
 </html>

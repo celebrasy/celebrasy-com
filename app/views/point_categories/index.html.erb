@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="heading-block">
+    <h3>
+      Point Categories
+    </h3>
+  </div>
+
+  <table 
+    class="table table-striped table-bordered table-hover ui-datatable" 
+    data-paging=true
+    data-ordering=true
+    data-length-change=false
+    data-info=false
+    data-page-length=25
+    data-searching=true
+  >
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>Title</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @point_categories.each do |point_category| %>
+        <tr role="row">
+          <td><%= point_category.group %></td>
+          <td><%= point_category.title %></td>
+          <td><%= point_category.value %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

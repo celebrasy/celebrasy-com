@@ -11,6 +11,11 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
+# MVP Ready Asset Dependencies
+gem "font-awesome-rails"
+gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'bootstrap-sass', '~> 3.3.5'
+
 group :development, :test do
   gem 'byebug'
   gem "rspec-rails", "~> 3.0"

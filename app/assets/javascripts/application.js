@@ -11,6 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require_tree .
+
+
+$(".points_controller.index").ready(function() {
+  $('.ui-datatable').dataTable();
+})
