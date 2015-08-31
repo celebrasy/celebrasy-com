@@ -1,0 +1,97 @@
+Legal,DUI,20
+Legal,Posession of Drugs,20
+Legal,Sale of Drugs,30
+Legal,Fraud,30
+Legal,Tax Evasion,30
+Legal,Insider Trading,25
+Legal,Murder,100
+Legal,Weapon posession,25
+Legal,Car crash (your fault),20
+Legal,Bribe,20
+Legal,Bankruptcy,40
+Legal,Being sued,30
+Legal,Sueing somebody,30
+Legal,Killing animals,60
+Legal,Caught shoplifting,25
+Legal,Disowning your parents,45
+Legal,Armed robbery,65
+Legal,Public Intoxication,20
+Legal,Domestic Violence,15
+Legal,Miscellaneous arrest,20
+Legal,Disorderly Conduct,20
+Legal,Getting convicted of any crime,20
+Legal,Getting acquitted of any crime,20
+Legal,Serving jail time of any crime,20
+Fighting,Fighting in public (general),15
+Fighting,Assaulting Paparazzi,20
+Fighting,Getting Punched and not fighting back,-10
+Fighting,Fighting with a weapon,40
+Fighting,Putting someone in the hospital,35
+Career,Leaked Sex Tape,30
+Career,Appearing in Nude magazine on purpose,20
+Career,Nude pictures leaked,25
+Career,Crossing Industry Lines (NBA to music; music to acting; NBA to MLB),20
+Career,Appearing on a Reality Star show,20
+Career,Having your own Reality Star show,30
+Career,Nominated for a major industry award,-5
+Career,Winning a major industry award,-10
+Career,"being in a gossip story with gary busey, mike tyson, ",15
+Career,start dating someone more than 15 yrs younger,5
+Career,Nip Slip,10
+Marital,Legitimate Child,-10
+Marital,Bastard Child,15
+Marital,Divorce,15
+Marital,Marriage within 6 months of dating,25
+Marital,Marriage after 6 months,-15
+Marital,Cheating on gf/bf,15
+Marital,Divorce within 6 months of marriage,30
+Marital,Cheating on spouse,30
+Marital,Coming out of the closet,50
+Marital,Adoption,-15
+Marital,Peeing or Pooping on sexual partner,60
+Health,Confirmed contraction of an STD,30
+Health,Hospital Visit (non-routine),15
+Health,Eating Disorder,10
+Health,Plastic Surgery,5
+Health,Over Dose,30
+Health,Televised Drunken Appearance,25
+Health,Attempted Suicide - Drugs,45
+Health,Attempted Suicide - Miscellaneous,65
+Health,Successful Suicide - Drugs,80
+Health,Successful Suicide - Miscellaneous,100
+Health,Base (Normal) Death,65
+Health,Awesome Death,30
+Health,Being Murdered,150
+Health,Burning Alive,175
+Health,Going to Rehab,15
+Health,Sex related death,20
+Health,Vomits in public,20
+Health,Girl accused of having penis,40
+Health,Having a testicle removed,40
+Health,Sex Change,60
+Health,Being eaten by a wild animal,150
+Health,Private phone calls being leaked,10
+Health,Admitting drug use for the first time,10
+Health,Becoming paralized,50
+Health,Getting shot,50
+Health,Caught crossdressing,30
+Health,Caught beefing in public,20
+Health,Committed to psych ward,50
+Miscellaneous,Having a fast food restaurant named after you,150
+Miscellaneous,Pet eaten by wild animal,40
+Miscellaneous,Being attacked by a monkey,60
+Miscellaneous,Becoming a minister,35
+Miscellaneous,Becoming an endorser of Subway or Taco Bell,25
+Miscellaneous,Getting a visible tattoo above the shoulders,15
+Miscellaneous,Getting caught mooning somebody,5
+Miscellaneous,Caught letting dog shit and not picking it up,15
+Miscellaneous,Wearing a mask in public,15
+Miscellaneous,"Claiming you saw ghosts, aliens, or UFOs",20
+Miscellaneous,Joining or leading a cult,35
+Miscellaneous,Inexplicably disappearing for days at a time,30
+Miscellaneous,Has Pog Collection or plays magic the gathering,20
+Miscellaneous,Accused of Cannibalism,250
+Miscellaneous,Caught harboring illegal immigrants,150
+Miscellaneous,Caught smuggling monkeys or rare birds,200
+Miscellaneous,Caught clubbing baby seals,200
+Miscellaneous,Seen stale fishing,45
