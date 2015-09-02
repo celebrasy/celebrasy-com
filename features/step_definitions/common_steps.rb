@@ -22,10 +22,6 @@ Given(/^that league has the default players$/) do
   @league.create_players_from_league_template!
 end
 
-When(/^I go back$/) do
-  page.evaluate_script('window.history.back()')
-end
-
 When(/^I click on "(.*?)"$/) do |text|
   page.click_link(text)
 end

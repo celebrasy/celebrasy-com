@@ -30,10 +30,10 @@
             </li>
 
             <li>
-              <a href="/leagues/{{ model.league_id }}/scoring">
+              <%= link_to league_point_categories_path(@league) do %>
                 <i class="fa fa-dashboard dropdown-icon "></i> 
-                Scoring
-              </a>
+                Point Categories
+              <% end %>
             </li>
           </ul>
         </li>
@@ -55,7 +55,7 @@
         </li>
 
         <li>
-          <%= link_to "Standings", league_standings_path(@league)  %>
+          <%= link_to "Teams", league_teams_path(@league)  %>
         </li>
       </ul>
     </nav>

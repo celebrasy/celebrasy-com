@@ -19,6 +19,10 @@
 //= require_tree .
 
 
-$(".points_controller.index").ready(function() {
+var ready;
+ready = function() {
   $('.ui-datatable').dataTable();
-})
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

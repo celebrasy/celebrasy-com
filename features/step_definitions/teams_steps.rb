@@ -9,8 +9,8 @@ When(/^I go to a team$/) do
   visit "/leagues/#{@league.id}/teams/#{@team.id}"
 end
 
-When(/^I go to view that league's standings$/) do
-  visit "/leagues/#{@league.id}/standings"
+When(/^I go to view that league's teams$/) do
+  visit "/leagues/#{@league.id}/teams"
 end
 
 When(/^I click on a team name$/) do

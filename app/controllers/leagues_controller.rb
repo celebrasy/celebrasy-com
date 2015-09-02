@@ -1,5 +1,5 @@
 class LeaguesController < ApplicationController
-  before_action :set_league, only: [:show, :edit, :update, :destroy, :standings]
+  before_action :set_league, only: [:show, :edit, :update, :destroy]
 
   # GET /leagues
   # GET /leagues.json
@@ -10,11 +10,6 @@ class LeaguesController < ApplicationController
   # GET /leagues/1
   # GET /leagues/1.json
   def show
-  end
-
-  # GET /leagues/1/standings
-  # GET /leagues/1/standings.json
-  def standings
   end
 
   # GET /leagues/new
