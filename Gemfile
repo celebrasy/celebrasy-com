@@ -39,6 +39,5 @@ group :test do
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
-  gem "rubocop", { require: false }
   gem "selenium-webdriver"
 end
