@@ -42,7 +42,7 @@ When(/^I setup an invalid player change$/) do
 end
 
 Then(/^I see why the change was invalid$/) do
-  page.click_button("Save Changes")
+  page.click_button("Update Team")
 
   expect(page).to have_content("There are too many Miscellaneous")
 end
@@ -62,12 +62,15 @@ Then(/^I should see all the league's teams$/) do
 end
 
 Then(/^I should be on the team show page$/) do
+  within "h2" do
+    expect(page).to have_content(@team.title)
+  end
   expect(current_url).to match(%r{leagues/#{@league.id}/teams/#{@team.id}})
 end
 
 Then(/^my team is updated$/) do
   before = @team.roster_slots.map(&:id)
-  page.click_button("Save Changes")
+  page.click_button("Update Team")
 
   expect(page).to have_content("Edit Roster")
   expect(current_url).to match(%r{leagues/#{@league.id}/teams/#{@team.id}$})

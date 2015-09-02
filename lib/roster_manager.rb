@@ -17,7 +17,7 @@ class RosterManager
       validate_player_position(roster_slot)
     end
 
-    @team.roster_slots = roster_slots
+    @team.update(roster_slots: roster_slots)
   end
 
   private
