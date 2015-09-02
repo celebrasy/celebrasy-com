@@ -1,0 +1,9 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.2.1
+before_script:
+  - RAILS_ENV=test bundle exec rake db:create db:migrate
+script:
+  - bundle exec bin/rspec
+  - HEADLESS=true bundle exec bin/cucumber
