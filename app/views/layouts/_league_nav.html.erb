@@ -1,0 +1,64 @@
+<div class="mainnav ">
+  <div class="container">
+
+    <a class="mainnav-toggle" data-toggle="collapse" data-target=".mainnav-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <i class="fa fa-bars"></i>
+    </a>
+
+    <nav class="collapse mainnav-collapse" role="navigation">
+      <ul class="mainnav-menu">
+        <li class="dropdown is-open">
+          <a href="/leagues/{{ model.id }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            League {{ model.id }}
+            <i class="mainnav-caret"></i>
+          </a>
+
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="/leagues/{{ model.league_id }}">
+                <i class="fa fa-dashboard dropdown-icon "></i> 
+                Dashboard
+              </a>
+            </li>
+
+            <li>
+              <%= link_to league_positions_path(@league) do %>
+                <i class="fa fa-dashboard dropdown-icon "></i> 
+                Positions
+              <% end %>
+            </li>
+
+            <li>
+              <a href="/leagues/{{ model.league_id }}/scoring">
+                <i class="fa fa-dashboard dropdown-icon "></i> 
+                Scoring
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="/leagues/{{ model.league_id }}/teams/1"> My Team </a>
+        </li>
+
+        <li>
+          <a href="leagues/{{ model.league_id }}/players">
+            Players
+          </a>
+        </li>
+
+        <li>
+          <a href="leagues/{{ model.league_id }}/points">
+            Points
+          </a>
+        </li>
+
+        <li>
+          <%= link_to "Standings", league_standings_path(@league)  %>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</div>

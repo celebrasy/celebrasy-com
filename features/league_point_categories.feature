@@ -12,7 +12,7 @@ Feature: Leagues have Point Categories
     When I go to that league's scoring page
     And I filter the table by "Death"
     Then I should only see the "Death" point categories
-    And I click on "My Team"
+    And I click on "Standings"
     And Pending I fix the DataTable issues
     And I go back
     And I filter the table by "Death"

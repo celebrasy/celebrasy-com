@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="heading-block">
+    <h3>
+      Positions
+    </h3>
+  </div>
+
+  <table 
+    class="table table-striped table-bordered table-hover ui-datatable" 
+    data-length-change=false
+    data-info=false
+  >
+    <thead>
+      <tr>
+        <th>Position</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @positions.each do |position| %>
+        <tr role="row">
+          <td><%= position.title %></td>
+          <td><%= position.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
