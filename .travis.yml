@@ -9,4 +9,4 @@ script:
   - HEADLESS=true bundle exec bin/cucumber
 addons:
   code_climate:
-    repo_token: 55e8a3c1e30ba0213a00213a
+    repo_token: 97d1ac04ffd9a627187c971bd18d9e4367da327ac5512fb3b835234bf57ffbf1
