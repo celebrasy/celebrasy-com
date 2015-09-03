@@ -29,3 +29,4 @@ Feature: Teams
     And I edit that team
     And I setup an invalid player change
     Then I see why the change was invalid
+    And I see the invalid player change I had submitted

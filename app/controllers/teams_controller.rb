@@ -22,6 +22,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    @roster_slots = @team.roster_slots
   end
 
   # POST /teams
@@ -44,7 +45,8 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1.json
   def update
     respond_to do |format|
-      if roster_manager.set_roster(populated_roster_slots)
+      @roster_slots = populated_roster_slots
+      if roster_manager.set_roster(@roster_slots)
         format.html { redirect_to [@league, @team], notice: 'Team was successfully updated.' }
         format.json { render :show, status: :ok, location: @team }
       else

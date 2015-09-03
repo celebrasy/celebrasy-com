@@ -25,20 +25,13 @@ end
 When(/^I setup a valid player change$/) do
   joan = @team.roster_slots.find { |rs| rs.league_player.name == "Joan Rivers" }
   dakota = @team.roster_slots.find { |rs| rs.league_player.name == "Dakota Fanning" }
-  within ".roster-slot-#{joan.id}" do
-    page.find("select").select(dakota.league_position.title)
-  end
 
-  within ".roster-slot-#{dakota.id}" do
-    page.find("select").select(joan.league_position.title)
-  end
+  page.find('select[name="team[roster_slots][2][league_position_id]"]').select(dakota.league_position.title)
+  page.find('select[name="team[roster_slots][3][league_position_id]"]').select(joan.league_position.title)
 end
 
 When(/^I setup an invalid player change$/) do
-  snooki = @team.roster_slots.find { |rs| rs.league_player.name == "Snooki" }
-  within ".roster-slot-#{snooki.id}" do
-    page.find("select").select("Miscellaneous")
-  end
+  page.find('select[name="team[roster_slots][0][league_position_id]"]').select("Miscellaneous")
 end
 
 Then(/^I see why the change was invalid$/) do
@@ -77,4 +70,10 @@ Then(/^my team is updated$/) do
 
   after = Team.find(@team.id).roster_slots.map(&:id)
   expect(before).to_not eq(after)
+end
+
+Then(/^I see the invalid player change I had submitted$/) do
+  selections = page.find_all("option[selected=selected]")
+  miscs = selections.map(&:text).select { |t| t == "Miscellaneous" }
+  expect(miscs.count).to eq(3)
 end

@@ -1,6 +1,13 @@
 <div class="portlet portlet-default">
+  <div class="portlet-header">
+    <h4 class="portlet-title">
+      Roster
+    </h4>
+  </div>
+
   <% if @team.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">×</a>
       <ul>
       <% @team.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -8,12 +15,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="portlet-header">
-    <h4 class="portlet-title">
-      Roster
-    </h4>
-  </div>
 
   <%= form_for([@league, @team]) do |f| %>
     <table 
@@ -32,12 +33,12 @@
       </thead>
       <tbody>
 
-        <% @team.roster_slots.each do |roster_slot| %>
-          <tr role="row" class="odd roster-slot-<%= roster_slot.id %>">
+        <% @roster_slots.each.with_index do |roster_slot, i| %>
+          <tr role="row">
             <td><%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %></td>
             <td>
-              <%= hidden_field "team[roster_slots][#{roster_slot.id}]", "league_player_id", { value: roster_slot.league_player.id } %>
-              <%= collection_select "team[roster_slots][#{roster_slot.id}]", 'league_position_id', roster_slot.league_player.allowed_league_positions, :id, :title, { selected: roster_slot.league_position_id } %>
+              <%= hidden_field "team[roster_slots][#{i}]", "league_player_id", { value: roster_slot.league_player.id } %>
+              <%= collection_select "team[roster_slots][#{i}]", 'league_position_id', roster_slot.league_player.allowed_league_positions, :id, :title, { selected: roster_slot.league_position_id } %>
             </td>
           </tr>
         <% end %>
