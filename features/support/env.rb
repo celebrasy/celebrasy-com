@@ -19,6 +19,7 @@ else
 end
 
 Capybara.default_driver = Capybara.javascript_driver = (headless ? :poltergeist : :browser)
+Capybara.default_max_wait_time = 10
 
 Before do
   Seeds::BadCelebs.seed!
