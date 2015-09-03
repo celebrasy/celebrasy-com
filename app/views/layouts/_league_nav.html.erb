@@ -9,8 +9,8 @@
     <nav class="collapse mainnav-collapse" role="navigation">
       <ul class="mainnav-menu">
         <li class="dropdown is-open">
-          <a href="/leagues/{{ model.id }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-            League {{ model.id }}
+          <a href="/leagues/<%= @league.id %>" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <%= @league.title %>
             <i class="mainnav-caret"></i>
           </a>
 
