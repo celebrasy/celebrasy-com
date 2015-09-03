@@ -2,28 +2,20 @@ class PositionsController < ApplicationController
   before_action :set_league
   before_action :set_position, only: [:show, :edit, :update, :destroy]
 
-  # GET /positions
-  # GET /positions.json
   def index
     @positions = @league.positions
   end
 
-  # GET /positions/1
-  # GET /positions/1.json
   def show
   end
 
-  # GET /positions/new
   def new
     @position = Position.new
   end
 
-  # GET /positions/1/edit
   def edit
   end
 
-  # POST /positions
-  # POST /positions.json
   def create
     @position = Position.new(position_params)
 
@@ -38,8 +30,6 @@ class PositionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /positions/1
-  # PATCH/PUT /positions/1.json
   def update
     respond_to do |format|
       if @position.update(position_params)
@@ -52,8 +42,6 @@ class PositionsController < ApplicationController
     end
   end
 
-  # DELETE /positions/1
-  # DELETE /positions/1.json
   def destroy
     @position.destroy
     respond_to do |format|
