@@ -1,0 +1,45 @@
+<div class="portlet portlet-default">
+  <% if @point_submission.errors.any? %>
+    <div class="alert alert-danger">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">×</a>
+      <ul>
+      <% @point_submission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for([@league, @point_submission]) do |f| %>
+    <div class="form-group">
+      <label class="control-label">Player</label>
+      <div>
+        <%= f.collection_select :league_player_id, @team.league_players, :id, :name, {}, class: "form-control select2" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Point Category</label>
+      <div>
+        <%= f.select :league_point_category_id, grouped_options_for_select(@league.grouped_point_categories), {}, class: "form-control select2" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Proof URL</label>
+      <div>
+        <%= f.text_field :proof_url, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="pull-right">
+      <% if @team %>
+        <%= hidden_field :point_submission, :team_id, value: @team.id %>
+        <%= link_to 'Cancel', league_team_path(@league, @team), class: "btn btn-default" %>
+      <% else %>
+        <%= link_to 'Cancel', league_point_categories_path(@league), class: "btn btn-default" %>
+      <% end %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

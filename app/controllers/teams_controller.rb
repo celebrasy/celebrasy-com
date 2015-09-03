@@ -16,23 +16,16 @@ class TeamsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      @roster_slots = populated_roster_slots
-      if roster_manager.set_roster(@roster_slots)
-        format.html { redirect_to [@league, @team], notice: 'Team was successfully updated.' }
-        format.json { render :show, status: :ok, location: @team }
-      else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    @roster_slots = populated_roster_slots
+    if roster_manager.set_roster(@roster_slots)
+      redirect_to [@league, @team], notice: 'Team was successfully updated.'
+    else
+      render :edit
     end
   rescue RosterManager::InvalidRoster => ex
     @team.errors.add(:base, ex.to_s)
 
-    respond_to do |format|
-      format.html { render :edit }
-      format.json { render json: @team.errors, status: :unprocessable_entity }
-    end
+    render :edit
   end
 
   private

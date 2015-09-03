@@ -2,6 +2,7 @@ class LeaguePlayer < ActiveRecord::Base
   belongs_to :league
   belongs_to :league_position
   belongs_to :player
+  has_many :point_submissions
 
   def self.find_by_full_name(name)
     first, last = name.split(" ", 2)

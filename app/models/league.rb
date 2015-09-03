@@ -4,6 +4,7 @@ class League < ActiveRecord::Base
   has_many :league_point_categories
   has_many :positions, { class_name: LeaguePosition }
   has_many :teams
+  has_many :point_submissions
 
   def create_point_categories_from_league_template!
     return unless league_template
@@ -60,5 +61,13 @@ class League < ActiveRecord::Base
 
   def flex_positions
     @flex_positions ||= positions.reject(&:strict?)
+  end
+
+  def grouped_point_categories
+    @grouped_point_categories ||= self.league_point_categories.sort_by(&:title).inject({}) do |h, point_category|
+      h[point_category.group] ||= []
+      h[point_category.group] << [point_category.title, point_category.id]
+      h
+    end
   end
 end

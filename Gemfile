@@ -27,6 +27,7 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano3-puma"
   gem "foreman"
+  gem "rails-erd"
 end
 
 group :doc do

@@ -48,20 +48,21 @@
     </table>
   </div>
 
-  <div class="portlet portlet-default">
+  <div class="portlet portlet-default point-submissions">
     <div class="portlet-header">
       <h4 class="portlet-title">
         Point Submissions
+        <%= link_to "Submit Points", new_league_point_submission_path(@league, team_id: @team.id), class: 'pull-right fa fa-plus' %>
       </h4>
     </div>
 
     <table 
       class="table table-striped table-bordered table-hover ui-datatable" 
-      data-paging=false
-      data-ordering=false
+      data-paging=true
+      data-ordering=true
       data-length-change=false
       data-info=false
-      data-searching=false
+      data-searching=true
     >
       <thead>
         <tr role="row">
@@ -75,15 +76,15 @@
         </tr>
       </thead>
       <tbody>
-        <% [].each do |point_submission| %>
+        <% @team.point_submissions.each do |point_submission| %>
           <tr role="row" class="odd">
-            <td><%= point_submission.date %></td>
-            <td><%= point_submission.player %></td>
-            <td><%= point_submission.category %></td>
-            <td><%= point_submission.action %></td>
+            <td><%= point_submission.created_at.strftime('%m/%d/%Y %I:%M%p') %></td>
+            <td><%= point_submission.league_player.name %></td>
+            <td><%= point_submission.league_point_category.group %></td>
+            <td><%= point_submission.league_point_category.title %></td>
             <td><%= point_submission.points %></td>
             <td><%= point_submission.status %></td>
-            <td><%= point_submission.proof %></td>
+            <td><%= link_to point_submission.proof_url, point_submission.proof_url, :target => :blank %></td>
           </tr>
         <% end %>
       </tbody>

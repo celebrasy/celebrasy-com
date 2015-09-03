@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718170105) do
+ActiveRecord::Schema.define(version: 20150903171250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,23 @@ ActiveRecord::Schema.define(version: 20150718170105) do
 
   add_index "point_categories", ["league_template_id"], name: "index_point_categories_on_league_template_id", using: :btree
 
+  create_table "point_submissions", force: :cascade do |t|
+    t.integer  "league_id"
+    t.integer  "team_id"
+    t.integer  "league_player_id"
+    t.integer  "league_point_category_id"
+    t.decimal  "points"
+    t.integer  "status",                   default: 0
+    t.string   "proof_url"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "point_submissions", ["league_id"], name: "index_point_submissions_on_league_id", using: :btree
+  add_index "point_submissions", ["league_player_id"], name: "index_point_submissions_on_league_player_id", using: :btree
+  add_index "point_submissions", ["league_point_category_id"], name: "index_point_submissions_on_league_point_category_id", using: :btree
+  add_index "point_submissions", ["team_id"], name: "index_point_submissions_on_team_id", using: :btree
+
   create_table "positions", force: :cascade do |t|
     t.integer  "league_template_id"
     t.string   "title"
@@ -141,6 +158,10 @@ ActiveRecord::Schema.define(version: 20150718170105) do
   add_foreign_key "players", "league_templates"
   add_foreign_key "players", "positions"
   add_foreign_key "point_categories", "league_templates"
+  add_foreign_key "point_submissions", "league_players"
+  add_foreign_key "point_submissions", "league_point_categories"
+  add_foreign_key "point_submissions", "leagues"
+  add_foreign_key "point_submissions", "teams"
   add_foreign_key "positions", "league_templates"
   add_foreign_key "roster_slots", "league_players"
   add_foreign_key "roster_slots", "league_positions"

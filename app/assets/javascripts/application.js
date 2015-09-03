@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require bootstrap
+//= require select2.min
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
@@ -22,6 +23,7 @@
 var ready;
 ready = function() {
   $('.ui-datatable').dataTable();
+  $('.select2').select2();
 };
 
 $(document).ready(ready);
