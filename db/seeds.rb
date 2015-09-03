@@ -4,6 +4,7 @@ require Rails.root.join("db/seeds/presidential_debates")
 
 class Seeds
   def self.delete_everything
+    PointSubmission.destroy_all
     RosterSlot.destroy_all
     Team.destroy_all
     LeaguePlayer.destroy_all

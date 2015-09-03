@@ -51,14 +51,6 @@ class League < ActiveRecord::Base
     end
   end
 
-  def all_positions
-    all_positions = []
-    positions.each do |position|
-      position.count.times { all_positions << position }
-    end
-    all_positions
-  end
-
   def flex_positions
     @flex_positions ||= positions.reject(&:strict?)
   end
