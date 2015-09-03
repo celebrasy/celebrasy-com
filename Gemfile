@@ -37,11 +37,12 @@ end
 
 group :test do
   gem "bundler-audit"
+  gem "capybara"
   gem "codeclimate-test-reporter"
   gem "cucumber-rails", { require: false }
-  gem 'capybara-select2'
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
   gem "selenium-webdriver"
+  gem 'capybara-select2'
 end

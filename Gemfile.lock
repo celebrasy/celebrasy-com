@@ -273,6 +273,7 @@ DEPENDENCIES
   byebug
   capistrano-rails
   capistrano3-puma
+  capybara
   capybara-select2
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
