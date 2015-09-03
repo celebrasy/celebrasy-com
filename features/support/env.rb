@@ -1,6 +1,7 @@
 require "capybara/poltergeist"
 require "cucumber/rails"
 require Rails.root.join("db/seeds")
+include Capybara::Select2
 
 ActionController::Base.allow_rescue = false
 
@@ -19,7 +20,6 @@ else
 end
 
 Capybara.default_driver = Capybara.javascript_driver = (headless ? :poltergeist : :browser)
-Capybara.default_max_wait_time = 10
 
 Before do
   Seeds::BadCelebs.seed!

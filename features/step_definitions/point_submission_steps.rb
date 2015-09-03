@@ -1,6 +1,6 @@
 When(/^I submit points for a player$/) do
-  page.click_link('Submit Points')
-  page.find("#point_submission_league_point_category_id").select("Burning Alive")
+  page.visit("/leagues/#{@league.id}/point_submissions/new?team_id=#{@league.teams.first.id}")
+  select2 "Burning Alive", from: "Point Category"
   page.fill_in('point_submission_proof_url', with: "http://www.gossipcop.com/snooki-slams-in-touch-jionni-lavalle-rumors-twitter/")
   page.click_button('Submit')
 end

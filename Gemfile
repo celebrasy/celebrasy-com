@@ -38,6 +38,7 @@ end
 group :test do
   gem "bundler-audit"
   gem "cucumber-rails", { require: false }
+  gem 'capybara-select2'
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
