@@ -28,6 +28,7 @@ group :development do
   gem "capistrano3-puma"
   gem "foreman"
   gem "rails-erd"
+  gem 'quiet_assets'
 end
 
 group :doc do
