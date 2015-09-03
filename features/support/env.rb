@@ -3,6 +3,9 @@ require "cucumber/rails"
 require Rails.root.join("db/seeds")
 include Capybara::Select2
 
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 ActionController::Base.allow_rescue = false
 
 DatabaseCleaner.strategy = :truncation

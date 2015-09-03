@@ -37,6 +37,7 @@ end
 
 group :test do
   gem "bundler-audit"
+  gem "codeclimate-test-reporter"
   gem "cucumber-rails", { require: false }
   gem 'capybara-select2'
   gem "database_cleaner"

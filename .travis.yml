@@ -7,3 +7,6 @@ before_script:
 script:
   - bundle exec bin/rspec
   - HEADLESS=true bundle exec bin/cucumber
+addons:
+  code_climate:
+    repo_token: 55e8a3c1e30ba0213a00213a
