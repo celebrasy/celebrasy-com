@@ -1,28 +1,21 @@
-== README
+# Celebrasy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/celebrasy/celebrasy-com.svg?branch=master)](https://travis-ci.org/celebrasy/celebrasy-com)
+[![Code Climate](https://codeclimate.com/github/celebrasy/celebrasy-com/badges/gpa.svg)](https://codeclimate.com/github/celebrasy/celebrasy-com)
+[![Test Coverage](https://codeclimate.com/github/celebrasy/celebrasy-com/badges/coverage.svg)](https://codeclimate.com/github/celebrasy/celebrasy-com/coverage)
 
-Things you may want to cover:
+### System dependencies
+``` bash
+brew install chromedriver
+```
 
-* Ruby version
+### Initial Setup
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+``` bash
+git clone git@github.com:celebrasy/celebrasy-com.git
+cd celebrasy-com
+bundle
+rake db:create db:migrate db:seed
+bin/rspec && bin/cucumber
+foreman start
+```
