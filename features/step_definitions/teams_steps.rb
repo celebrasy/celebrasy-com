@@ -26,8 +26,8 @@ When(/^I setup a valid player change$/) do
   joan = @team.roster_slots.find { |rs| rs.league_player.name == "Joan Rivers" }
   dakota = @team.roster_slots.find { |rs| rs.league_player.name == "Dakota Fanning" }
 
-  page.find('select[name="team[roster_slots][2][league_position_id]"]').select(dakota.league_position.title)
-  page.find('select[name="team[roster_slots][3][league_position_id]"]').select(joan.league_position.title)
+  select dakota.league_position.title, from: dakota.league_player.name
+  select joan.league_position.title, from: joan.league_player.name
 end
 
 When(/^I setup an invalid player change$/) do
