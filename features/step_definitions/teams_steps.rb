@@ -27,12 +27,20 @@ When(/^I setup a valid player change$/) do
   dakota = @team.roster_slots.find { |rs| rs.league_player.name == "Dakota Fanning" }
   expect(page).to have_content(dakota.league_player.name)
 
-  select dakota.league_position.title, from: dakota.league_player.name
-  select joan.league_position.title, from: joan.league_player.name
+  within ".roster-slot-#{joan.id}" do
+    page.find("select").select(dakota.league_position.title)
+  end
+
+  within ".roster-slot-#{dakota.id}" do
+    page.find("select").select(joan.league_position.title)
+  end
 end
 
 When(/^I setup an invalid player change$/) do
-  page.find('select[name="team[roster_slots][0][league_position_id]"]').select("Miscellaneous")
+  snooki = @team.roster_slots.find { |rs| rs.league_player.name == "Snooki" }
+  within ".roster-slot-#{snooki.id}" do
+    page.find("select").select("Miscellaneous")
+  end
 end
 
 Then(/^I see why the change was invalid$/) do
