@@ -6,7 +6,7 @@ class League < ActiveRecord::Base
   has_many :teams
   has_many :point_submissions
 
-  def create_point_categories_from_league_template!
+  def populate_from_league_template!
     return unless league_template
 
     league_template.point_categories.each do |point_category|
@@ -19,10 +19,6 @@ class League < ActiveRecord::Base
         value: point_category.suggested_value
       })
     end
-  end
-
-  def create_positions_from_league_template!
-    return unless league_template
 
     league_template.positions.each do |position|
       next if positions.find_by({ position_id: position.id })
@@ -34,10 +30,6 @@ class League < ActiveRecord::Base
         strict: position.strict
       })
     end
-  end
-
-  def create_players_from_league_template!
-    return unless league_template
 
     league_template.players.each do |player|
       next if players.find_by({ player_id: player.id })
