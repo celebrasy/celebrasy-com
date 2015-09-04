@@ -15,7 +15,7 @@
       data-searching=true
     >
       <thead>
-        <tr role="row">
+        <tr>
           <th aria-label="Player">Player</th>
           <th aria-label="Position">Position</th>
           <% @league.point_category_groups.each do |group| %>
@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         <% @league.players.each do |player| %>
-          <tr role="row" class="odd">
+          <tr>
             <td><%= player.first_name %> <%= player.last_name %></td>
             <td><%= player.league_position.title %></td>
             <% @league.point_category_groups.each do |group| %>

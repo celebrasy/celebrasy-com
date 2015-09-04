@@ -12,7 +12,7 @@
     data-searching=false
   >
     <thead>
-      <tr role="row">
+      <tr>
         <th aria-label="Rank">Rank</th>
         <th aria-label="Team">Team</th>
         <th aria-label="Points">Points</th>
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
       <% @league.teams.each.with_index do |team, i| %>
-        <tr role="row">
+        <tr>
           <td><%= i + 1 %></td>
           <td><%= link_to team.title, league_team_path(@league, team) %></td>
           <td>0</td>

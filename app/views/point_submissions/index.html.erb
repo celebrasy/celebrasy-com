@@ -14,7 +14,7 @@
     data-searching=true
   >
     <thead>
-      <tr role="row">
+      <tr>
         <th aria-label="Date">Date</th>
         <th aria-label="Player">Player</th>
         <th aria-label="Caegory">Caegory</th>
@@ -26,7 +26,7 @@
     </thead>
     <tbody>
       <% @league.point_submissions.each do |point_submission| %>
-        <tr role="row" class="odd">
+        <tr>
           <td><%= point_submission.created_at.strftime('%m/%d/%Y %I:%M%p') %></td>
           <td><%= point_submission.league_player.name %></td>
           <td><%= point_submission.league_point_category.group %></td>

@@ -20,7 +20,7 @@
       data-searching=false
     >
       <thead>
-        <tr role="row">
+        <tr>
           <th aria-label="Player">Player</th>
           <th aria-label="Position">Position</th>
           <% @league.point_category_groups.each do |group| %>
@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <% @team.roster_slots.each do |roster_slot| %>
-          <tr role="row" class="odd">
+          <tr>
             <td><%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %></td>
             <td><%= roster_slot.league_position.title %></td>
             <% @league.point_category_groups.each do |group| %>
@@ -61,7 +61,7 @@
       data-searching=true
     >
       <thead>
-        <tr role="row">
+        <tr>
           <th aria-label="Date">Date</th>
           <th aria-label="Player">Player</th>
           <th aria-label="Caegory">Caegory</th>
@@ -73,7 +73,7 @@
       </thead>
       <tbody>
         <% @team.point_submissions.each do |point_submission| %>
-          <tr role="row" class="odd">
+          <tr>
             <td><%= point_submission.created_at.strftime('%m/%d/%Y %I:%M%p') %></td>
             <td><%= point_submission.league_player.name %></td>
             <td><%= point_submission.league_point_category.group %></td>
