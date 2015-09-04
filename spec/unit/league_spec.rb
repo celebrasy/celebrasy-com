@@ -33,13 +33,6 @@ RSpec.describe League, { type: :model } do
 
       expect(league.league_point_categories[0].value).to eq(100)
     end
-
-    it "does nothing if ther eis no template" do
-      league = League.create!
-      league.populate_from_league_template!
-
-      expect(league.league_point_categories.size).to eq(0)
-    end
   end
 
   describe "populate_from_league_template" do
@@ -73,13 +66,6 @@ RSpec.describe League, { type: :model } do
       league.positions[0].update({ count: 10 })
 
       expect(league.positions[0].count).to eq(10)
-    end
-
-    it "does nothing if ther eis no template" do
-      league = League.create!
-      league.populate_from_league_template!
-
-      expect(league.positions.size).to eq(0)
     end
   end
 
@@ -116,13 +102,6 @@ RSpec.describe League, { type: :model } do
       league.players[0].update({ first_name: "Foobar meebar" })
 
       expect(league.players[0].first_name).to eq("Foobar meebar")
-    end
-
-    it "does nothing if ther eis no template" do
-      league = League.create!
-      league.populate_from_league_template!
-
-      expect(league.players.size).to eq(0)
     end
   end
 end
