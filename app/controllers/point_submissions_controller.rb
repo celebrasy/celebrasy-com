@@ -1,7 +1,6 @@
 class PointSubmissionsController < ApplicationController
   before_action :set_league
   before_action :set_team, only: [:new, :create]
-  before_action :set_point_submission, only: []
 
   def new
     @point_submission = @league.point_submissions.build
@@ -29,10 +28,6 @@ class PointSubmissionsController < ApplicationController
       if team_id = params[:team_id] || params[:point_submission].try(:[], :team_id)
         @team = Team.find(team_id)
       end
-    end
-
-    def set_point_submission
-      @point_submission = PointSubmission.find(params[:id])
     end
 
     def point_submission_params
