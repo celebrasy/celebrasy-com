@@ -15,7 +15,8 @@ brew install chromedriver
 git clone git@github.com:celebrasy/celebrasy-com.git
 cd celebrasy-com
 bundle
-rake db:create db:migrate db:seed
+rake db:create db:migrate db:seed:all
 bin/rspec && bin/cucumber
 foreman start
+open http://localhost:3000/leagues/1/teams
 ```
