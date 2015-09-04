@@ -10,4 +10,12 @@ class RosterSlot < ActiveRecord::Base
   def set_defaults
     self.active_at = Time.now
   end
+
+  def league_player
+    return @league_player if @league_player
+
+    @league_player = super
+    @league_player.playing_as = self.league_position
+    @league_player
+  end
 end

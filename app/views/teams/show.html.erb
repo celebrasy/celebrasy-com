@@ -11,43 +11,13 @@
       </h4>
     </div>
 
-    <table
-      class="table table-striped table-bordered table-hover ui-datatable"
-      data-paging=false
-      data-ordering=true
-      data-length-change=false
-      data-info=false
-      data-searching=false
-    >
-      <thead>
-        <tr>
-          <th aria-label="Player">Player</th>
-          <th aria-label="Position">Position</th>
-          <% @league.point_category_groups.each do |group| %>
-            <th><%= group.capitalize %></th>
-          <% end %>
-          <th aria-label="Total Points">Total Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @team.roster_slots.each do |roster_slot| %>
-          <tr>
-            <td><%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %></td>
-            <td><%= roster_slot.league_position.title %></td>
-            <% @league.point_category_groups.each do |group| %>
-              <td><%= roster_slot.league_player.points_for_group(group) %></td>
-            <% end %>
-            <td><%= roster_slot.league_player.total_points %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'players/scorecard', players: @team.league_players %>
   </div>
 
   <div class="portlet portlet-default">
     <div class="portlet-header">
       <h4 class="portlet-title">
-        Point Submissions
+        Points
         <%= link_to "Submit Points", new_league_point_submission_path(@league, team_id: @team.id), class: 'pull-right fa fa-plus' %>
       </h4>
     </div>

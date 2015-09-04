@@ -18,6 +18,11 @@ class LeaguePlayer < ActiveRecord::Base
     points_by_group[group] || 0
   end
 
+  attr_writer :playing_as
+  def playing_as
+    @playing_as || self.league_position
+  end
+
   def total_points
     self.point_submissions.inject(0) { |n, point| n += point.points; n }
   end
