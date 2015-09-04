@@ -1,6 +1,6 @@
 class PointSubmissionsController < ApplicationController
   before_action :set_league
-  before_action :set_team
+  before_action :set_team, only: [:new, :create]
   before_action :set_point_submission, only: []
 
   def new
@@ -14,6 +14,9 @@ class PointSubmissionsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def index
   end
 
   private

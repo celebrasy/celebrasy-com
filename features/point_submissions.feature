@@ -11,8 +11,8 @@ Feature: Points can be scored
     When I go to that team
     Then I should see each player's points broken down by group
 
-  Scenario: You can see the team's total points
+  Scenario: You can see the league's points
     Given the BadCeleb League seeds have been run
     And one team has a bunch of points
-    When I go to that team
-    Then I should see each player's total points
+    When I go to that league's points page
+    Then I should see all the points

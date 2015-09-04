@@ -12,27 +12,28 @@
       data-info=false
       data-searching=true
     >
-    <thead>
-      <tr role="row">
-        <th aria-label="Player">Player</th>
-        <th aria-label="Position">Position</th>
-        <% @league.point_category_groups.each do |group| %>
-          <th aria-label="<%= group.capitalize %> Points"><%= group.capitalize %> Points</th>
-        <% end %>
-        <th aria-label="Total Points">Total Points</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @league.players.each do |player| %>
-        <tr role="row" class="odd">
-          <td><%= player.first_name %> <%= player.last_name %></td>
-          <td><%= player.league_position.title %></td>
+      <thead>
+        <tr role="row">
+          <th aria-label="Player">Player</th>
+          <th aria-label="Position">Position</th>
           <% @league.point_category_groups.each do |group| %>
-            <td><%= player.points_for_group(group) %></td>
+            <th aria-label="<%= group.capitalize %> Points"><%= group.capitalize %> Points</th>
           <% end %>
-          <td><%= player.total_points %></td>
+          <th aria-label="Total Points">Total Points</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @league.players.each do |player| %>
+          <tr role="row" class="odd">
+            <td><%= player.first_name %> <%= player.last_name %></td>
+            <td><%= player.league_position.title %></td>
+            <% @league.point_category_groups.each do |group| %>
+              <td><%= player.points_for_group(group) %></td>
+            <% end %>
+            <td><%= player.total_points %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

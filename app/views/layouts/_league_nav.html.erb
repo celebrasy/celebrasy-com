@@ -47,9 +47,7 @@
         </li>
 
         <li>
-          <a href="leagues/{{ model.league_id }}/points">
-            Points
-          </a>
+          <%= link_to "Points", league_point_submissions_path(@league)  %>
         </li>
 
         <li>

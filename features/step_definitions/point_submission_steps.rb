@@ -55,3 +55,16 @@ Then(/^I should see each player's total points$/) do
     expect(page).to have_content(@cat2.value + @cat3.value)
   end
 end
+
+When(/^I go to that league's points page$/) do
+  page.visit("/leagues/#{@league.id}/point_submissions")
+end
+
+Then(/^I should see all the points$/) do
+  @league.point_submissions.each do |point_submission|
+    expect(page).to have_content(point_submission.league_player.name)
+    expect(page).to have_content(point_submission.points)
+    expect(page).to have_content(point_submission.league_point_category.title)
+    expect(page).to have_content(point_submission.league_point_category.group)
+  end
+end
