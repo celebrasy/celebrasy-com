@@ -54,4 +54,8 @@ class League < ActiveRecord::Base
       h
     end
   end
+
+  def point_category_groups
+    @point_category_groups ||= self.league_point_categories.map(&:group).uniq
+  end
 end

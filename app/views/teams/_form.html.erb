@@ -35,7 +35,12 @@
 
         <% @roster_slots.each.with_index do |roster_slot, i| %>
           <tr class="roster-slot-<%= roster_slot.id %>">
-            <td><%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %></td>
+            <td>
+              <label for="team_roster_slots_<%= i %>_league_position_id">
+                <%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %>
+              </label>
+            </td>
+
             <td>
               <%= hidden_field "team[roster_slots][#{i}]", "league_player_id", { value: roster_slot.league_player.id } %>
               <%= collection_select "team[roster_slots][#{i}]", 'league_position_id', roster_slot.league_player.allowed_league_positions, :id, :title, { selected: roster_slot.league_position_id } %>
