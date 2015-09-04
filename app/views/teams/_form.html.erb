@@ -38,12 +38,13 @@
             <td>
               <label for="team_roster_slots_<%= i %>_league_position_id">
                 <%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %>
+                (<%= roster_slot.league_player.league_position.title %>)
               </label>
             </td>
 
             <td>
               <%= hidden_field "team[roster_slots][#{i}]", "league_player_id", { value: roster_slot.league_player.id } %>
-              <%= collection_select "team[roster_slots][#{i}]", 'league_position_id', roster_slot.league_player.allowed_league_positions, :id, :title, { selected: roster_slot.league_position_id } %>
+              <%= collection_select "team[roster_slots][#{i}]", 'league_position_id', roster_slot.league_player.allowed_league_positions, :id, :title, { selected: roster_slot.league_position_id }, { class: "form-control" } %>
             </td>
           </tr>
         <% end %>
