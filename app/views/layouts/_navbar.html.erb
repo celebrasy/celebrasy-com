@@ -50,18 +50,6 @@
               </a>
             </li>
 
-            <li class="divider"></li>
-
-            <% League.all.each do |league| %>
-              <li>
-                <a href=<%= league_point_categories_path(league.id) %>>
-                  <i class="fa fa-bars dropdown-icon "></i>
-                  <%= league.title %>
-                </a>
-              </li>
-            <% end %>
-            </li>
-
           </ul>
 
         </li>

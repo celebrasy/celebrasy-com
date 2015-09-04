@@ -15,27 +15,23 @@
           </a>
 
           <ul class="dropdown-menu" role="menu">
-            <li>
-              <a href="/leagues/{{ model.league_id }}">
-                <i class="fa fa-dashboard dropdown-icon "></i> 
-                Dashboard
-              </a>
-            </li>
-
-            <li>
-              <%= link_to league_positions_path(@league) do %>
-                <i class="fa fa-dashboard dropdown-icon "></i> 
-                Positions
-              <% end %>
-            </li>
-
-            <li>
-              <%= link_to league_point_categories_path(@league) do %>
-                <i class="fa fa-dashboard dropdown-icon "></i> 
-                Point Categories
-              <% end %>
-            </li>
+            <% League.all.each do |league| %>
+              <li>
+                <a href=<%= league_point_categories_path(league.id) %>>
+                  <i class="fa fa-bars dropdown-icon "></i>
+                  <%= league.title %>
+                </a>
+              </li>
+            <% end %>
           </ul>
+        </li>
+
+        <li>
+          <%= link_to "Positions", league_positions_path(@league) %>
+        </li>
+
+        <li>
+          <%= link_to "Point Categories", league_point_categories_path(@league) %>
         </li>
 
         <li>
