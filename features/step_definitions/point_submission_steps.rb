@@ -38,11 +38,12 @@ Then(/^I should see each player's points broken down by group$/) do
   end
 
   within(page.find('td', text: @player2.name).first(:xpath,".//..")) do
-    expect(page).to have_content(@cat2.value)
-  end
-
-  within(page.find('td', text: @player2.name).first(:xpath,".//..")) do
-    expect(page).to have_content(@cat3.value)
+    if @cat2.group == @cat3.group
+      expect(page).to have_content(@cat2.value + @cat3.value)
+    else
+      expect(page).to have_content(@cat2.value)
+      expect(page).to have_content(@cat3.value)
+    end
   end
 end
 
