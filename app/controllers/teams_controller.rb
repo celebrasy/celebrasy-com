@@ -12,16 +12,13 @@ class TeamsController < ApplicationController
   end
 
   def edit
-    @roster_slots = @team.roster_slots
   end
 
   def update
     @roster_slots = populated_roster_slots
-    if roster_manager.set_roster(@roster_slots)
-      redirect_to [@league, @team], notice: 'Team was successfully updated.'
-    else
-      render :edit
-    end
+    roster_manager.set_roster(@roster_slots)
+
+    redirect_to [@league, @team], notice: 'Team was successfully updated.'
   rescue RosterManager::InvalidRoster => ex
     @team.errors.add(:base, ex.to_s)
 
@@ -49,6 +46,7 @@ class TeamsController < ApplicationController
         },
         :point_submissions => [ :league_player, :league_point_category ]
       ).find(params[:id])
+      @roster_slots = @team.roster_slots
     end
 
     def team_params

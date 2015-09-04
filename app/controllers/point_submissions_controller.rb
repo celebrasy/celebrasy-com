@@ -8,15 +8,12 @@ class PointSubmissionsController < ApplicationController
   end
 
   def create
-    @point_submission = @league.point_submissions.build(point_submission_params)
-    if @point_submission.save
-      if @team
-        redirect_to [@league, @team], notice: 'Points Submitted!'
-      else
-        redirect_to league_point_submissions_path(@league), notice: 'Points Submitted!'
-      end
+    @league.point_submissions.create!(point_submission_params)
+
+    if @team
+      redirect_to [@league, @team], notice: 'Points Submitted!'
     else
-      render :edit
+      redirect_to league_point_submissions_path(@league), notice: 'Points Submitted!'
     end
   end
 
