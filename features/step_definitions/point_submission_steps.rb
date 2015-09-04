@@ -40,11 +40,11 @@ Given(/^one team has a bunch of points$/) do
 end
 
 Then(/^I should see each player's points broken down by group$/) do
-  within(page.find('td', text: @player1.name).first(:xpath,".//..")) do
+  within(page.find('.player-scorecard td', text: @player1.name).first(:xpath,".//..")) do
     expect(page).to have_content(@cat1.value)
   end
 
-  within(page.find('td', text: @player2.name).first(:xpath,".//..")) do
+  within(page.find('.player-scorecard td', text: @player2.name).first(:xpath,".//..")) do
     if @cat2.group == @cat3.group
       expect(page).to have_content(@cat2.value + @cat3.value)
     else
@@ -74,5 +74,11 @@ Then(/^I should see all the points$/) do
     expect(page).to have_content(point_submission.points)
     expect(page).to have_content(point_submission.league_point_category.title)
     expect(page).to have_content(point_submission.league_point_category.group)
+  end
+end
+
+Then(/^I should see the point totals$/) do
+  within 'table.player-scorecard tfoot' do
+    expect(page).to have_content(@cat1.value + @cat2.value + @cat3.value)
   end
 end

@@ -1,5 +1,5 @@
 <table 
-  class="table table-striped table-bordered table-hover ui-datatable" 
+  class="table table-striped table-bordered table-hover ui-datatable player-scorecard"
   data-paging=true
   data-page-length=30
   data-ordering=true
@@ -30,4 +30,16 @@
       </tr>
     <% end %>
   </tbody>
+
+  <% if defined?(total_points_on) %>
+    <tfoot>
+      <tr>
+        <td colspan=2 ></td>
+        <% @league.point_category_groups.each do |group| %>
+          <td><%= total_points_on.points_for_group(group) %></td>
+        <% end %>
+        <td><%= total_points_on.total_points %></td>
+      </tr>
+    </tfoot>
+  <% end %>
 </table>
