@@ -45,7 +45,7 @@ class TeamsController < ApplicationController
       @team = Team.includes(
         :roster_slots => {
           :league_position => [],
-          :league_player => { :league => :positions }
+          :league_player => { :league => :positions, :point_submissions => :league_point_category }
         },
         :point_submissions => [ :league_player, :league_point_category ]
       ).find(params[:id])

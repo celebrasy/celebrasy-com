@@ -21,12 +21,9 @@
         <tr role="row">
           <th aria-label="Player">Player</th>
           <th aria-label="Position">Position</th>
-          <th aria-label="Legal Points">Legal Points</th>
-          <th aria-label="Fighting Points">Fighting Points</th>
-          <th aria-label="Career Points">Career Points</th>
-          <th aria-label="Marital Points">Marital Points</th>
-          <th aria-label="Health Points">Health Points</th>
-          <th aria-label="Other Points">Other Points</th>
+          <% @league.point_category_groups.each do |group| %>
+            <th aria-label="<%= group.capitalize %> Points"><%= group.capitalize %> Points</th>
+          <% end %>
           <th aria-label="Total Points">Total Points</th>
         </tr>
       </thead>
@@ -35,13 +32,10 @@
           <tr role="row" class="odd">
             <td><%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %></td>
             <td><%= roster_slot.league_position.title %></td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <% @league.point_category_groups.each do |group| %>
+              <td><%= roster_slot.league_player.points_for_group(group) %></td>
+            <% end %>
+            <td><%= roster_slot.league_player.total_points %></td>
           </tr>
         <% end %>
       </tbody>

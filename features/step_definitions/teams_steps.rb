@@ -9,6 +9,10 @@ When(/^I go to a team$/) do
   visit "/leagues/#{@league.id}/teams/#{@team.id}"
 end
 
+When(/^I go to that team$/) do
+  visit "/leagues/#{@league.id}/teams/#{@team.id}"
+end
+
 When(/^I go to view that league's teams$/) do
   visit "/leagues/#{@league.id}/teams"
 end
