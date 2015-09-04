@@ -11,7 +11,7 @@ ActionController::Base.allow_rescue = false
 DatabaseCleaner.strategy = :truncation
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-headless = (ENV["HEADLESS"] == "true")
+headless = (ENV["HEADLESS"] != "false")
 if headless
   Capybara.register_driver(:poltergeist) do |app|
     Capybara::Poltergeist::Driver.new(app, { debug: false, extensions: ["vendor/poltergeist/bind.js"] })

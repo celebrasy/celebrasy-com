@@ -2,7 +2,17 @@ Feature: Points can be scored
 
   Scenario: You can submit points
     Given the BadCeleb League seeds have been run
-    When I submit points for a player
+    When I submit points for a player (team)
+    Then I should see the points for that player
+
+  Scenario: You can submit points (team)
+    Given the BadCeleb League seeds have been run
+    When I submit points for a player (team)
+    Then I should see the points for that player
+
+  Scenario: You can submit points (league)
+    Given the BadCeleb League seeds have been run
+    When I submit points for a player (league)
     Then I should see the points for that player
 
   Scenario: You can see group point breakdowns

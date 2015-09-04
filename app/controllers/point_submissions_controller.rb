@@ -10,7 +10,11 @@ class PointSubmissionsController < ApplicationController
   def create
     @point_submission = @league.point_submissions.build(point_submission_params)
     if @point_submission.save
-      redirect_to [@league, @team], notice: 'Points Submitted!'
+      if @team
+        redirect_to [@league, @team], notice: 'Points Submitted!'
+      else
+        redirect_to league_point_submissions_path(@league), notice: 'Points Submitted!'
+      end
     else
       render :edit
     end
@@ -25,7 +29,7 @@ class PointSubmissionsController < ApplicationController
     end
 
     def set_team
-      if team_id = params[:team_id] || point_submission_params[:team_id]
+      if team_id = params[:team_id] || params[:point_submission].try(:[], :team_id)
         @team = Team.find(team_id)
       end
     end

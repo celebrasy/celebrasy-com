@@ -14,7 +14,11 @@
     <div class="form-group">
       <label class="control-label">Player</label>
       <div>
-        <%= f.collection_select :league_player_id, @team.league_players, :id, :name, {}, class: "form-control select2" %>
+        <% if @team %>
+          <%= f.collection_select :league_player_id, @team.league_players, :id, :name, {}, class: "form-control select2" %>
+      <% else %>
+          <%= f.collection_select :league_player_id, @league.players, :id, :name, {}, class: "form-control select2" %>
+      <% end %>
       </div>
     </div>
 
