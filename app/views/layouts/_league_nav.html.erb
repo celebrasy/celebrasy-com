@@ -43,9 +43,7 @@
         </li>
 
         <li>
-          <a href="leagues/{{ model.league_id }}/players">
-            Players
-          </a>
+          <%= link_to "Players", league_players_path(@league)  %>
         </li>
 
         <li>
