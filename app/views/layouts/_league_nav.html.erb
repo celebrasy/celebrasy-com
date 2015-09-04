@@ -39,7 +39,8 @@
         </li>
 
         <li>
-          <a href="/leagues/{{ model.league_id }}/teams/1"> My Team </a>
+          <% my_team = @league.teams.first  %>
+          <%= link_to "My Team", league_team_path(@league, my_team)  %>
         </li>
 
         <li>
