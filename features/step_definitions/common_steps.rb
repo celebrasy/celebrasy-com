@@ -9,3 +9,7 @@ end
 When(/^I click on "(.*?)"$/) do |text|
   page.click_link(text)
 end
+
+When(/^I go to that league's teams$/) do
+  visit "/leagues/#{@league.id}/teams"
+end

@@ -82,3 +82,8 @@ Then(/^I should see the point totals$/) do
     expect(page).to have_content(@cat1.value + @cat2.value + @cat3.value)
   end
 end
+
+Then(/^that team should be ranked first$/) do
+  expect(first("table.teams tbody tr")).to have_content(@team.title)
+  expect(first("table.teams tbody tr")).to have_content(@cat1.value + @cat2.value + @cat3.value)
+end

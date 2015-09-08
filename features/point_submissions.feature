@@ -32,3 +32,9 @@ Feature: Points can be scored
     And one team has a bunch of points
     When I go to that team
     Then I should see the point totals
+
+  Scenario: You can see league team point totals
+    Given the BadCeleb League seeds have been run
+    And one team has a bunch of points
+    When I go to that league's teams
+    Then that team should be ranked first

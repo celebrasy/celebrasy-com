@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   def index
-    @teams = @league.teams
+    @teams = @league.teams.sort_by { |t| -1 * t.total_points }
   end
 
   def show
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
     end
 
     def set_league
-      @league = League.find(params[:league_id])
+      @league = League.includes(:teams => [:point_submissions]).find(params[:league_id])
     end
 
     def set_team
