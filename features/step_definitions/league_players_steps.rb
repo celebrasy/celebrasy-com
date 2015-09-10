@@ -19,3 +19,21 @@ Then(/^I should see the best player first$/) do
     end
   end
 end
+
+Then(/^I submit the add a player form$/) do
+  page.click_link "Add Player"
+  @name = FFaker::Name.name
+  page.fill_in('player_first_name', with: @name.split.first)
+  page.fill_in('player_last_name', with: @name.split.last)
+  page.click_button "Submit"
+end
+
+When(/^I filter the table by the new player's name$/) do
+  page.fill_in "Search:", with: @name
+end
+
+Then(/^I should see that new player$/) do
+  within("table.dataTable tbody") do
+    expect(page).to have_content(@name)
+  end
+end

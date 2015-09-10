@@ -2,10 +2,6 @@ When(/^I go to that league's positions page$/) do
   visit "/leagues/#{@league.id}/positions"
 end
 
-When(/^I filter the table by "(.*?)"$/) do |search_term|
-  page.fill_in "Search:", with: search_term
-end
-
 Then(/^I should see the BadCeleb positions$/) do
   @league_template.positions.each do |position|
     expect(page).to have_content(position.title)
