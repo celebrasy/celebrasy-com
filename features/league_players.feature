@@ -11,3 +11,10 @@ Feature: Leagues have Players
     And one team has a bunch of points
     When I go to that league's players page
     Then I should see the best player first
+
+  Scenario: Players can be added
+    Given the BadCeleb League seeds have been run
+    When I go to that league's players page
+    And I submit the add a player form
+    And I filter the table by the new player's name
+    Then I should see that new player

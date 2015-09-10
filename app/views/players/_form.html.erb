@@ -1,0 +1,40 @@
+<div class="portlet portlet-default">
+  <% if @player.errors.any? %>
+    <div class="alert alert-danger">
+      <a class="close" data-dismiss="alert" href="#" aria-hidden="true">×</a>
+      <ul>
+      <% @player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for(@player, as: :player) do |f| %>
+    <div class="form-group">
+      <label class="control-label">First Name</label>
+      <div>
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Last Name</label>
+      <div>
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Player</label>
+      <div>
+        <%= f.collection_select :league_position_id, @league.positions, :id, :title, {}, class: "form-control select2" %>
+      </div>
+    </div>
+
+    <div class="pull-right">
+      <%= link_to 'Cancel', league_players_path(@league), class: "btn btn-default" %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -5,6 +5,16 @@ class PlayersController < ApplicationController
     @players = @league.players
   end
 
+  def new
+    @player = @league.players.build
+  end
+
+  def create
+    @league.players.create!(player_params)
+
+    redirect_to league_players_path(@league), notice: 'Player Added!'
+  end
+
   private
     def set_league
       @league = League.includes({
@@ -14,5 +24,9 @@ class PlayersController < ApplicationController
           point_submissions: [:league_point_category]
         },
       }).find(params[:league_id])
+    end
+
+    def player_params
+      params.require(:player).permit(:first_name, :last_name, :league_position_id)
     end
 end
