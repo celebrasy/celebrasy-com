@@ -41,6 +41,19 @@ RSpec.describe RosterManager do
         end.to raise_error("There are too many Athletes")
       end
 
+      it 'is valid, without deleting existing slots' do
+        player = league.players.shuffle.first
+        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_position })]
+        roster_manager.set_roster(roster_slots)
+
+        roster_slots = [RosterSlot.new({ league_player: mel_gibson, league_position: reality_star })]
+        expect do
+          roster_manager.set_roster(roster_slots)
+        end.to raise_error("Mel Gibson is a Actor and cannot be played as a Reality Star")
+
+        expect(team.reload.roster_slots.count).to eq(1)
+      end
+
       it "has players from other people's teams" do
         other_team = league.teams.create!({ title: "A Different Team" })
         roster_slots = [RosterSlot.new({ league_player: ocho_cinco, league_position: athlete })]

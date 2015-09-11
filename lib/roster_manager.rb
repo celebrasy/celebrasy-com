@@ -10,12 +10,12 @@ class RosterManager
   def set_roster(roster_slots)
     validate_league_roster_positions(roster_slots)
 
-    delete_all_existing_slots
-
     roster_slots.each do |roster_slot|
       validate_player_is_available(roster_slot)
       validate_player_position(roster_slot)
     end
+
+    delete_all_existing_slots
 
     @team.update(roster_slots: roster_slots)
   end
