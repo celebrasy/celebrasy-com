@@ -42,7 +42,9 @@ class RosterManager
 
     existing_slot = RosterSlot.find_by({ league_player_id: roster_slot.league_player_id })
 
-    raise(InvalidRoster, "#{roster_slot.league_player.name} is already on #{existing_slot.team.title}'s roster") if existing_slot
+    if existing_slot && existing_slot.team != @team
+      raise(InvalidRoster, "#{roster_slot.league_player.name} is already on #{existing_slot.team.title}'s roster") 
+    end
   end
 
   def validate_player_position(roster_slot)

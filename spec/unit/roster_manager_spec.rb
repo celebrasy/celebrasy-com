@@ -64,6 +64,18 @@ RSpec.describe RosterManager do
           roster_manager.set_roster(roster_slots)
         end.to raise_error("Chad Ocho Cinco is already on A Different Team's roster")
       end
+
+      it 'does not block players on my own team' do
+        player = league.players.shuffle.first
+        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_position })]
+        roster_manager.set_roster(roster_slots)
+        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_position })]
+        roster_manager.set_roster(roster_slots)
+
+        expect(team.roster_slots.count).to eq(1)
+        expect(team.roster_slots.first.active_at).to be
+        expect(team.roster_slots.first).to be_active
+      end
     end
   end
 end
