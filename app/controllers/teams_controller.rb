@@ -31,7 +31,11 @@ class TeamsController < ApplicationController
     end
 
     def populated_roster_slots
-      @populated_roster_slots = team_params[:roster_slots].map { |_, rs_params| RosterSlot.new(rs_params) }
+      @populated_roster_slots ||= team_params[:roster_slots].map do |_, rs_params|
+        next if rs_params[:league_position_id].to_i == -1
+        next if rs_params[:league_player_id].to_s == ""
+        RosterSlot.new(rs_params)
+      end.compact
     end
 
     def set_league
@@ -42,7 +46,11 @@ class TeamsController < ApplicationController
       @team = Team.includes(
         :roster_slots => {
           :league_position => [],
-          :league_player => { :league => :positions, :point_submissions => :league_point_category }
+          :league_player => {
+            :league => :positions,
+            :point_submissions => :league_point_category,
+            :league_position => []
+          }
         },
         :point_submissions => [ :league_player, :league_point_category ]
       ).find(params[:id])

@@ -16,6 +16,11 @@ class League < ActiveRecord::Base
     @flex_positions ||= positions.reject(&:strict?)
   end
 
+  def available_players
+    subq = "SELECT league_player_id FROM roster_slots INNER JOIN teams ON roster_slots.team_id = teams.id WHERE teams.league_id = #{self.id}"
+    self.players.where("id NOT IN (#{subq})")
+  end
+
   def grouped_point_categories
     @grouped_point_categories ||= self.league_point_categories.sort_by(&:title).inject({}) do |h, point_category|
       h[point_category.group] ||= []

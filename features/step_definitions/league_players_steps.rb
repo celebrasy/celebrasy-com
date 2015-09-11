@@ -35,7 +35,7 @@ When(/^I filter the table by the new player's name$/) do
 end
 
 Then(/^I should see that new player$/) do
-  within("table.dataTable tbody") do
+  within("table.dataTable.player-scorecard tbody") do
     expect(page).to have_content(@name)
   end
 end

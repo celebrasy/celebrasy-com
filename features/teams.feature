@@ -30,3 +30,13 @@ Feature: Teams
     And I setup an invalid player change
     Then I see why the change was invalid
     And I see the invalid player change I had submitted
+
+  Scenario: You can add a new player to your roster
+    Given the BadCeleb League seeds have been run
+    And there is an extra "Politician" in the league
+    When I go to a team
+    And I edit that team
+    And I drop a "Politician"
+    And I add that new player
+    Then my team is updated
+    And I should see that new player

@@ -90,3 +90,24 @@ Then(/^I see the invalid player change I had submitted$/) do
   miscs = selections.map(&:text).select { |t| t == "Miscellaneous" }
   expect(miscs.count).to eq(3)
 end
+
+Given(/^there is an extra "(.*?)" in the league$/) do |pos|
+  position = LeaguePosition.find_by(title: pos)
+  @player = @league.players.create!(first_name: FFaker::Name.first_name, last_name: FFaker::Name.last_name, league_position: position)
+end
+
+When(/^I add that new player$/) do
+  within('.roster-slot-10') do
+    page.find("#team_roster_slots_10_league_player_id").select(@player.name)
+    page.find("#team_roster_slots_10_league_position_id").select(@player.league_position.title)
+  end
+end
+
+When(/^I drop a "(.*?)"$/) do |pos|
+  position = LeaguePosition.find_by(title: pos)
+  roster_slot = @team.roster_slots.find { |rs| rs.league_position == position }
+
+  within(page.find('td', text: roster_slot.league_player.name).first(:xpath,".//..")) do
+    page.first("select").select("Drop")
+  end
+end
