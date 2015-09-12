@@ -15,7 +15,7 @@ class RosterSlot < ActiveRecord::Base
     return @league_player if @league_player
 
     @league_player = super
-    @league_player.playing_as = self.league_position
+    @league_player.playing_as = self.league_position if @league_player
     @league_player
   end
 end

@@ -28,7 +28,7 @@ end
 
 When(/^I setup a valid player change$/) do
   joan = @team.roster_slots.find { |rs| rs.league_player.name == "Joan Rivers" }
-  dakota = @team.roster_slots.find { |rs| rs.league_player.name == "Dakota Fanning" }
+  dakota = @team.roster_slots.find { |rs| rs.league_player.name == "Elle Fanning" }
   expect(page).to have_content(dakota.league_player.name)
 
   within ".roster-slot-#{joan.id}" do

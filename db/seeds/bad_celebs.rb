@@ -1,5 +1,6 @@
 require "csv"
 require "roster_manager"
+require "trade_manager"
 
 class Seeds
   class BadCelebs
@@ -8,6 +9,7 @@ class Seeds
       league_template = setup_league_template
       league = setup_league(league_template)
       setup_teams(league)
+      transact_team_changes(league)
     end
 
     def self.setup_league_template
@@ -67,6 +69,76 @@ class Seeds
       roster_assignments.each do |team, assignments|
         RosterManager.new(team).set_roster(assignments)
       end
+    end
+
+    def self.transact_team_changes(league)
+      CSV.foreach("db/seeds/bad_celebs/transactions.csv") do |(date, type, owner, dropping, adding, pos)|
+        if type == "Trade"
+          trade(league, owner, dropping, adding, pos)
+          next
+        elsif type == "Swap"
+          swap(league, owner, dropping, adding)
+          next
+        end
+
+        existing = league.players.find_by!({ name: dropping })
+
+        team = Team.find_by!(owner: owner)
+        removing = team.roster_slots.find { |rs| rs.league_player.id == existing.id }
+        player = league.players.find_by({ name: adding })
+        if player.nil?
+          player = league.players.create!({
+            name: adding,
+            league_positions: [LeaguePosition.find_by!(title: pos)]
+          })
+        end
+
+        if removing.nil?
+          next
+        end
+
+        roster_slots = []
+        team.roster_slots.each do |rs|
+          next if rs.league_player == existing
+          roster_slots << RosterSlot.new(league_player_id: rs.league_player_id, league_position_id: rs.league_position_id)
+        end
+        roster_slots << RosterSlot.new(league_player_id: player.id, league_position_id: removing.league_position_id)
+
+        begin
+          RosterManager.new(team).set_roster(roster_slots)
+        rescue RosterManager::InvalidRoster => ex
+        end
+      end
+    end
+
+    def self.trade(league, owner1, player1_name, owner2, player2_name)
+      team1 = Team.find_by!({ owner: owner1 })
+      team2 = Team.find_by!({ owner: owner2 })
+
+      player1 = league.players.find_by!({ name: player1_name })
+      player2 = league.players.find_by!({ name: player2_name })
+
+      TradeManager.new(team1, team2).trade(player1, player2)
+    end
+
+    def self.swap(league, owner, player1_name, player2_name)
+      team = Team.find_by!({ owner: owner })
+      player1 = league.players.find_by!({ name: player1_name })
+      player2 = league.players.find_by!({ name: player2_name })
+
+      player1_slot = team.roster_slots.find { |rs| rs.league_player == player1 }
+      player2_slot = team.roster_slots.find { |rs| rs.league_player == player2 }
+
+      roster_slots = team.roster_slots.map do |rs|
+        next if rs.league_player == player1 || rs.league_player == player2
+
+        RosterSlot.new(league_player: rs.league_player, league_position: rs.league_position)
+      end.compact
+
+      roster_slots << RosterSlot.new(league_player: player1, league_position: player2_slot.league_position)
+      roster_slots << RosterSlot.new(league_player: player2, league_position: player1_slot.league_position)
+
+      RosterManager.new(team).set_roster(roster_slots)
     end
   end
 end

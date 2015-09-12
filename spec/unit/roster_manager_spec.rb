@@ -6,8 +6,8 @@ RSpec.describe RosterManager do
   let(:team) { league.teams.create!({ title: "Sweet Team Bro" }) }
   let(:roster_manager) { RosterManager.new(team) }
 
-  let(:mel_gibson) { league.players.find { |p| p.name == "Mel Gibson" } }
-  let(:ocho_cinco) { league.players.find { |p| p.name == "Chad Ocho Cinco" } }
+  let(:mel_gibson) { league.players.find { |p| p.name == "Gary Busey" } }
+  let(:ocho_cinco) { league.players.find { |p| p.name == "TO" } }
   let(:mike_tyson) { league.players.find { |p| p.name == "Mike Tyson" } }
   let(:athlete) { league.positions.find { |p| p.title == "Athlete" } }
   let(:reality_star) { league.positions.find { |p| p.title == "Reality Star" } }
@@ -28,7 +28,7 @@ RSpec.describe RosterManager do
         roster_slots = [RosterSlot.new({ league_player: mel_gibson, league_position: reality_star })]
         expect do
           roster_manager.set_roster(roster_slots)
-        end.to raise_error("Mel Gibson is a Actor and cannot be played as a Reality Star")
+        end.to raise_error("Gary Busey is a Actor and cannot be played as a Reality Star")
       end
 
       it "has players in valid league positions" do
@@ -49,7 +49,7 @@ RSpec.describe RosterManager do
         roster_slots = [RosterSlot.new({ league_player: mel_gibson, league_position: reality_star })]
         expect do
           roster_manager.set_roster(roster_slots)
-        end.to raise_error("Mel Gibson is a Actor and cannot be played as a Reality Star")
+        end.to raise_error("Gary Busey is a Actor and cannot be played as a Reality Star")
 
         expect(team.reload.roster_slots.count).to eq(1)
       end
@@ -62,7 +62,7 @@ RSpec.describe RosterManager do
         roster_slots = [RosterSlot.new({ league_player: ocho_cinco, league_position: athlete })]
         expect do
           roster_manager.set_roster(roster_slots)
-        end.to raise_error("Chad Ocho Cinco is already on A Different Team's roster")
+        end.to raise_error("TO is already on A Different Team's roster")
       end
 
       it 'does not block players on my own team' do
