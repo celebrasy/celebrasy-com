@@ -10,6 +10,7 @@ class Seeds
       league = setup_league(league_template)
       setup_teams(league)
       transact_team_changes(league)
+      add_points(league)
     end
 
     def self.setup_league_template
@@ -155,6 +156,22 @@ class Seeds
       )
 
       RosterManager.new(team).set_roster(roster_slots)
+    end
+
+    def self.add_points(league)
+      CSV.foreach("db/seeds/bad_celebs/points.csv") do |(date, owner, player_name, category, proof)|
+        team = Team.find_by!({ owner: owner })
+        player = league.players.find_by!({ name: player_name })
+        cat = LeaguePointCategory.find_by!({ title: category })
+        data = {
+          league: league,
+          team: team,
+          league_player: player,
+          league_point_category: cat
+        }
+        data[:proof_url] = proof if proof.present?
+        PointSubmission.create!(data)
+      end
     end
   end
 end

@@ -33,7 +33,11 @@
           <td><%= point_submission.league_point_category.title %></td>
           <td><%= point_submission.points %></td>
           <td><%= point_submission.status %></td>
-          <td><%= link_to point_submission.proof_url, point_submission.proof_url, :target => :blank %></td>
+          <% if point_submission.proof_url.present? %></td>
+            <td><%= link_to point_submission.proof_url, point_submission.proof_url, :target => :blank %></td>
+          <% else %></td>
+            <td></td>
+          <% end %></td>
         </tr>
       <% end %>
     </tbody>

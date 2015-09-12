@@ -21,7 +21,7 @@ Legal,Miscellaneous arrest,20
 Legal,Disorderly Conduct,20
 Legal,Getting convicted of any crime,20
 Legal,Getting acquitted of any crime,20
-Legal,Serving jail time of any crime,20
+Legal,Serving jail time for any crime,20
 Fighting,Fighting in public (general),15
 Fighting,Assaulting Paparazzi,20
 Fighting,Getting Punched and not fighting back,-10
@@ -46,7 +46,7 @@ Marital,Marriage after 6 months,-15
 Marital,Cheating on gf/bf,15
 Marital,Divorce within 6 months of marriage,30
 Marital,Cheating on spouse,30
-Marital,Coming out of the closet,50
+Marital,Coming out gay,50
 Marital,Adoption,-15
 Marital,Peeing or Pooping on sexual partner,60
 Health,Confirmed contraction of an STD,30
@@ -95,3 +95,7 @@ Miscellaneous,Caught harboring illegal immigrants,150
 Miscellaneous,Caught smuggling monkeys or rare birds,200
 Miscellaneous,Caught clubbing baby seals,200
 Miscellaneous,Seen stale fishing,45
+Miscellaneous,Having a coin minted in your honor,75
+Marital,Sexting or having private sexual messages leaked,30
+Marital,Breaking off engagement,10
+Legal,Changing your name,30
