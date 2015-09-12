@@ -27,6 +27,6 @@ class PlayersController < ApplicationController
     end
 
     def player_params
-      params.require(:player).permit(:name, :league_position_ids)
+      params.require(:player).permit(:name, :league_position_ids, :league_position_ids => [])
     end
 end

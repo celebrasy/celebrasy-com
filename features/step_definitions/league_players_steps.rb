@@ -24,6 +24,7 @@ Then(/^I submit the add a player form$/) do
   page.click_link "Add Player"
   @name = FFaker::Name.name
   page.fill_in('player_name', with: @name)
+  select2 "Musician", from: "Position"
   page.click_button "Submit"
 end
 
@@ -34,5 +35,25 @@ end
 Then(/^I should see that new player$/) do
   within("table.dataTable.player-scorecard tbody") do
     expect(page).to have_content(@name)
+  end
+end
+
+When(/^I submit the add a player form with multiple positions$/) do
+  page.click_link "Add Player"
+  @name = FFaker::Name.name
+  page.fill_in('player_name', with: @name)
+
+  @position1 = "Athlete"
+  @position2 = "Dead Person"
+  select2 @position1, from: "Position"
+  select2 @position2, from: "Position"
+  page.click_button "Submit"
+end
+
+Then(/^I should see both his positions$/) do
+  sleep(5)
+  within("table.dataTable.player-scorecard tbody") do
+    expect(page).to have_content(@position1)
+    expect(page).to have_content(@position2)
   end
 end

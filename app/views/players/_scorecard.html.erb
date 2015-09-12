@@ -22,7 +22,7 @@
     <% players.each do |player| %>
       <tr>
         <td><%= player.name %></td>
-        <td><%= player.playing_as.title %></td>
+        <td><%= player.playing_as.try(:title) || player.league_positions.map(&:title).join("/") %></td>
         <% @league.point_category_groups.each do |group| %>
           <td><%= player.points_for_group(group) %></td>
         <% end %>

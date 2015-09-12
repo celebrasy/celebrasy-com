@@ -13,14 +13,11 @@ class LeaguePlayer < ActiveRecord::Base
 
   validates_presence_of :name
 
+  attr_accessor :playing_as
+
   def allowed_league_positions
     return @allowed_league_positions if @allowed_league_positions
 
     league.flex_positions | league_positions
-  end
-
-  attr_writer :playing_as
-  def playing_as
-    @playing_as || self.league_positions.first
   end
 end

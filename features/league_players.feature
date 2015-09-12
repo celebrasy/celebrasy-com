@@ -18,3 +18,11 @@ Feature: Leagues have Players
     And I submit the add a player form
     And I filter the table by the new player's name
     Then I should see that new player
+
+  Scenario: Players can be added with multiple positions
+    Given the BadCeleb League seeds have been run
+    When I go to that league's players page
+    And I submit the add a player form with multiple positions
+    And I filter the table by the new player's name
+    Then I should see that new player
+    And I should see both his positions
