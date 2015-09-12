@@ -3,7 +3,11 @@
   data-paging=true
   data-page-length=30
   data-ordering=true
-  data-order="[[ 8, &quot;desc&quot; ]]"
+  <% if show_team %>
+    data-order="[[ 9, &quot;desc&quot; ]]"
+  <% else %>
+    data-order="[[ 8, &quot;desc&quot; ]]"
+  <% end %>
   data-length-change=false
   data-info=false
   data-searching=true
