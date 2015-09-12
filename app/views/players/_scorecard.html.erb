@@ -12,9 +12,6 @@
     <tr>
       <th aria-label="Player">Player</th>
       <th aria-label="Position">Position</th>
-      <% if show_team %>
-        <th aria-label="Team">Team</th>
-      <% end %>
       <% @league.point_category_groups.each do |group| %>
         <th><%= group.capitalize %></th>
       <% end %>
@@ -26,9 +23,6 @@
       <tr>
         <td><%= player.name %></td>
         <td><%= player.playing_as.try(:title) || player.league_positions.map(&:title).join("/") %></td>
-        <% if show_team %>
-          <td><%= player.team.try(:title) %></td>
-        <% end %>
         <% @league.point_category_groups.each do |group| %>
           <td><%= player.points_for_group(group) %></td>
         <% end %>
