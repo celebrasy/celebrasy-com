@@ -1,7 +1,7 @@
 Britany Spears,Musician,Jackson,Musician
 Lindsay Lohan,Actor,Sebas,Actor
 Andy Dick,Miscellaneous,Prof,Miscellaneous
-Amy Winehouse,Musician,Lynch,Musician
+Amy Winehouse,Musician/Dead Person,Lynch,Musician
 Angelina,Reality Star,Connors,Miscellaneous
 Kanye,Musician,Gabe,Musician
 Paula Abdul,Musician,Geoff,Miscellaneous
@@ -13,7 +13,7 @@ Millard Fillmore,Dead Person,Lou,Dead Person
 Kwame Kilpatrick,Politician,Vinny,Politician
 Snooki,Reality Star,Jackson,Reality Star
 Lilly Allen,Musician,Sebas,Miscellaneous
-Gary Coleman,Actor,Prof,Actor
+Gary Coleman,Actor/Dead Person,Prof,Actor
 50 Cent,Musician/Actor,Lynch,Miscellaneous
 Megan Fox,Actor,Connors,Actor
 Mitch Mcconnell,Politician,Gabe,Politician
@@ -32,7 +32,7 @@ The Situation,Reality Star,Connors,Reality Star
 Marvin Harrison,Athlete,Gabe,Athlete
 Verne Troyer,Actor,Geoff,Actor
 Silvio Berlusconi,Politician,Matty,Politician
-Osama Bin Laden,Politician,Joel,Politician
+Osama Bin Laden,Politician/Dead Person,Joel,Politician
 Heidi Montag,Reality Star,Kies,Reality Star
 Charles Rangel,Politician,Kevin,Politician
 Nancy Pelosi,Politician,Lou,Politician
@@ -43,14 +43,14 @@ Fidel Castro,Politician,Prof,Politician
 Hugo Chavez,Politician,Lynch,Politician
 Tiger Woods,Athlete,Connors,Athlete
 Dr. Conrad Murray,Miscellaneous,Gabe,Miscellaneous
-Whitney Houston,Musician,Geoff,Musician
+Whitney Houston,Musician/Dead Person,Geoff,Musician
 Micky Rourke,Actor,Matty,Actor
 Weird Al,Reality Star,Joel,Reality Star
 Alex Rodriguez,Athlete,Kies,Athlete
 Stephen Baldwin,Actor,Kevin,Miscellaneous
 Carmello Anthony,Athlete,Lou,Athlete
 Billy Bob Thornton,Actor,Vinny,Actor
-Kim Jong Il,Politician,Jackson,Politician
+Kim Jong Il,Politician/Dead Person,Jackson,Politician
 Rod Blogojevich,Politician/Reality Star,Sebas,Politician
 Boy George,Musician,Prof,Musician
 Ron Artest,Athlete,Lynch,Miscellaneous
@@ -63,7 +63,7 @@ Jwoww,Reality Star,Kies,Miscellaneous
 Miley Cyrus,Musician,Kevin,Musician
 Spencer Pratt,Reality Star,Lou,Reality Star
 Saddam Hussein,Dead Person,Vinny,Dead Person
-Joan Rivers,Actor,Jackson,Actor
+Joan Rivers,Actor/Dead Person,Jackson,Actor
 Michael Jackson,Dead Person,Sebas,Dead Person
 Mary Kate Olsen,Actor,Prof,Miscellaneous
 Kristin Cavallari,Reality Star,Lynch,Reality Star
@@ -72,12 +72,12 @@ Brittany Murphy,Actor,Gabe,Actor
 Potgg,Reality Star,Geoff,Miscellaneous
 Kim Kardashian,Reality Star,Matty,Reality Star
 L Ron Hubbard,Dead Person,Joel,Dead Person
-CT,Reality Star,Kies,Miscellaneous
+Ct,Reality Star,Kies,Miscellaneous
 Charles Barkley,Athlete,Kevin,Athlete
 Anne Hathaway,Actor,Lou,Actor
 T.I.,Musician,Vinny,Musician
 Dakota Fanning,Actor,Jackson,Actor
-DMX,Musician/Actor,Sebas,Actor
+Dmx,Musician/Actor,Sebas,Actor
 Gary Busey,Actor,Prof,Actor
 Mischa Barton,Actor,Lynch,Actor
 George Washington,Dead Person,Connors,Dead Person
@@ -114,4 +114,4 @@ Kim Yu Na,Athlete,Joel,Athlete
 Scott Brown,Politician,Kies,Politician
 Elvis,Dead Person,Kevin,Dead Person
 Perez Hilton,Reality Star,Lou,Miscellaneous
-Vince Shlomi,Reality Star,Vinny,Miscellaneous
+Vince Shlomi,Miscellaneous,Vinny,Miscellaneous
