@@ -12,6 +12,10 @@ end
 Then(/^I should see the best player first$/) do
   first_row = first("table.dataTable tbody tr")
   within(first_row) do
+    puts "player1: #{@player1.name}"
+    puts "player2: #{@player2.name}"
+    puts "cat1: #{@cat1.value}, cat2: #{@cat2.value}, cat3: #{@cat3.value}"
+
     if @cat1.value > @cat2.value + @cat3.value
       expect(page).to have_content(@player1.name)
     else
