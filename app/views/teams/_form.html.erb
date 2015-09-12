@@ -37,7 +37,7 @@
           <tr class="roster-slot-<%= roster_slot.id %>">
             <td>
               <label for="team_roster_slots_<%= i %>_league_position_id">
-                <%= roster_slot.league_player.first_name %> <%=roster_slot.league_player.last_name %>
+                <%= roster_slot.league_player.name %>
                 (<%= roster_slot.league_player.league_position.title %>)
               </label>
             </td>

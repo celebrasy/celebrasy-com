@@ -22,11 +22,8 @@ end
 
 Then(/^I submit the add a player form$/) do
   page.click_link "Add Player"
-  first_name = FFaker::Name.first_name
-  last_name = FFaker::Name.last_name
-  @name = [first_name, last_name].join(" ")
-  page.fill_in('player_first_name', with: first_name)
-  page.fill_in('player_last_name', with: last_name)
+  @name = FFaker::Name.name
+  page.fill_in('player_name', with: @name)
   page.click_button "Submit"
 end
 

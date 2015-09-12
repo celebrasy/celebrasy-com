@@ -21,7 +21,7 @@
   <tbody>
     <% players.each do |player| %>
       <tr>
-        <td><%= player.first_name %> <%= player.last_name %></td>
+        <td><%= player.name %></td>
         <td><%= player.playing_as.title %></td>
         <% @league.point_category_groups.each do |group| %>
           <td><%= player.points_for_group(group) %></td>

@@ -26,12 +26,10 @@ class Seeds
       end
 
       CSV.foreach("db/seeds/bad_celebs/players.csv") do |(name, pos)|
-        first, last = name.split(" ", 2)
-        next if league_template.players.find_by({ first_name: first, last_name: last })
+        next if league_template.players.find_by({ name: name })
 
         league_template.players.create!({
-          first_name: first,
-          last_name: last,
+          name: name,
           position: Position.find_by!({ title: pos })
         })
       end

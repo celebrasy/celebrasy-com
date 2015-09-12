@@ -10,9 +10,7 @@ class LeaguePlayer < ActiveRecord::Base
 
   include HasPoints
 
-  def name
-    "#{first_name} #{last_name}".strip
-  end
+  validates_presence_of :name
 
   def allowed_league_positions
     return @allowed_league_positions if @allowed_league_positions

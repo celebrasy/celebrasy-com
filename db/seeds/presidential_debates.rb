@@ -27,12 +27,10 @@ class Seeds
       end
 
       CSV.foreach("db/seeds/presidential_debates/players.csv") do |(name, pos)|
-        first, last = name.split(" ", 2)
-        next if league_template.players.find_by({ first_name: first, last_name: last })
+        next if league_template.players.find_by({ name: name })
 
         league_template.players.create!({
-          first_name: first,
-          last_name: last,
+          name: name,
           position: Position.find_by!({ title: pos })
         })
       end
@@ -58,15 +56,15 @@ class Seeds
     def self.populate_teams_with_players(league)
       players = league.players.shuffle
 
-      [['Geoff', 'Trump', 'Cruz'],
-       ['Gwynne', 'Huckabee', 'Bush']].each do |(owner, p1, p2)|
+      [['Geoff', 'Donald Trump', 'Ted Cruz'],
+       ['Gwynne', 'Mike Huckabee', 'Jeb Bush']].each do |(owner, p1, p2)|
         team = Team.find_by({ owner: owner })
-        player1 = LeaguePlayer.find_by({ last_name: p1 })
+        player1 = LeaguePlayer.find_by({ name: p1 })
         r1 = RosterSlot.new({
           league_player: player1,
           league_position: player1.league_position
         })
-        player2 = LeaguePlayer.find_by({ last_name: p2 })
+        player2 = LeaguePlayer.find_by({ name: p2 })
         r2 = RosterSlot.new({
           league_player: player2,
           league_position: player2.league_position

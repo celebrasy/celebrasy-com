@@ -12,16 +12,9 @@
 
   <%= form_for(@player, as: :player) do |f| %>
     <div class="form-group">
-      <label class="control-label">First Name</label>
+      <label class="control-label">Name</label>
       <div>
-        <%= f.text_field :first_name, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label">Last Name</label>
-      <div>
-        <%= f.text_field :last_name, class: "form-control" %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
     </div>
 

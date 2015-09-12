@@ -55,8 +55,7 @@ end
 
 Then(/^I should see that team's players$/) do
   @team.roster_slots.each do |roster_slot|
-    expect(page).to have_content(roster_slot.league_player.first_name)
-    expect(page).to have_content(roster_slot.league_player.last_name)
+    expect(page).to have_content(roster_slot.league_player.name)
     expect(page).to have_content(roster_slot.league_position.title)
   end
 end
@@ -93,7 +92,7 @@ end
 
 Given(/^there is an extra "(.*?)" in the league$/) do |pos|
   position = LeaguePosition.find_by(title: pos)
-  @player = @league.players.create!(first_name: FFaker::Name.first_name, last_name: FFaker::Name.last_name, league_position: position)
+  @player = @league.players.create!(name: FFaker::Name.name, league_position: position)
 end
 
 When(/^I add that new player$/) do

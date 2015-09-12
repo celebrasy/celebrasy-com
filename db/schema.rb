@@ -17,8 +17,7 @@ ActiveRecord::Schema.define(version: 20150903171250) do
   enable_extension "plpgsql"
 
   create_table "league_players", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
     t.integer  "league_id"
     t.integer  "league_position_id"
     t.integer  "player_id"
@@ -72,8 +71,7 @@ ActiveRecord::Schema.define(version: 20150903171250) do
   add_index "leagues", ["league_template_id"], name: "index_leagues_on_league_template_id", using: :btree
 
   create_table "players", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
     t.integer  "league_template_id"
     t.integer  "position_id"
     t.datetime "created_at",         null: false

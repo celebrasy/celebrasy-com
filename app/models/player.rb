@@ -6,8 +6,7 @@ class Player < ActiveRecord::Base
     {
       player: self,
       league_position: league.positions.find_by({ title: self.position.title }),
-      first_name: self.first_name,
-      last_name: self.last_name
+      name: self.name,
     }
   end
 end

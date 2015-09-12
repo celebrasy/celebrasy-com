@@ -90,7 +90,7 @@ RSpec.describe League, { type: :model } do
 
     it "does not delete extra point categories" do
       league = League.create!({ league_template: league_template })
-      league.players.create!({ first_name: "Foobar meebar" })
+      league.players.create!({ name: "Foobar meebar" })
       league.populate_from_league_template!
 
       expect(league.players.size).to eq(league_template.players.size + 1)
@@ -99,9 +99,9 @@ RSpec.describe League, { type: :model } do
     it "does not clobber point overrides" do
       league = League.create!({ league_template: league_template })
       league.populate_from_league_template!
-      league.players[0].update({ first_name: "Foobar meebar" })
+      league.players[0].update({ name: "Foobar meebar" })
 
-      expect(league.players[0].first_name).to eq("Foobar meebar")
+      expect(league.players[0].name).to eq("Foobar meebar")
     end
   end
 end
