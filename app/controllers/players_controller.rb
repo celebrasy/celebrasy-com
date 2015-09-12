@@ -20,13 +20,13 @@ class PlayersController < ApplicationController
       @league = League.includes({
         league_point_categories: [],
         players: {
-          league_position: [],
+          league_positions: [],
           point_submissions: [:league_point_category]
         },
       }).find(params[:league_id])
     end
 
     def player_params
-      params.require(:player).permit(:name, :league_position_id)
+      params.require(:player).permit(:name, :league_position_ids)
     end
 end

@@ -49,11 +49,11 @@ class RosterManager
 
   def validate_player_position(roster_slot)
     new_position = roster_slot.league_position
-    player_position = roster_slot.league_player.league_position
+    player_positions = roster_slot.league_player.league_positions
 
-    return unless new_position.strict? && player_position.id != new_position.id
+    return unless new_position.strict? && !player_positions.map(&:id).include?(new_position.id)
 
-    message = "#{roster_slot.league_player.name} is a #{player_position.title} and cannot be played as a #{roster_slot.league_position.title}"
+    message = "#{roster_slot.league_player.name} is a #{player_positions.map(&:title).join("/")} and cannot be played as a #{roster_slot.league_position.title}"
     raise(InvalidRoster, message)
   end
 

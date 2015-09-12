@@ -92,13 +92,13 @@ end
 
 Given(/^there is an extra "(.*?)" in the league$/) do |pos|
   position = LeaguePosition.find_by(title: pos)
-  @player = @league.players.create!(name: FFaker::Name.name, league_position: position)
+  @player = @league.players.create!(name: FFaker::Name.name, league_positions: [position])
 end
 
 When(/^I add that new player$/) do
   within('.roster-slot-10') do
     page.find("#team_roster_slots_10_league_player_id").select(@player.name)
-    page.find("#team_roster_slots_10_league_position_id").select(@player.league_position.title)
+    page.find("#team_roster_slots_10_league_position_id").select(@player.league_positions.first.title)
   end
 end
 

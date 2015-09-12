@@ -31,7 +31,7 @@ class Seeds
 
         league_template.players.create!({
           name: name,
-          position: Position.find_by!({ title: pos })
+          positions: [Position.find_by!({ title: pos })]
         })
       end
 
@@ -57,10 +57,9 @@ class Seeds
       players = league.players.shuffle
       league.teams.each do |team|
         assignments = players.pop(6).map do |player|
-          #next if player.league_position.title == "Bachelorette"
           RosterSlot.new({
             league_player: player,
-            league_position: player.league_position
+            league_position: player.league_positions.first
           })
         end.compact
 

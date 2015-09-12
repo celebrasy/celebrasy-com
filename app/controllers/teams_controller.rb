@@ -49,7 +49,7 @@ class TeamsController < ApplicationController
           :league_player => {
             :league => :positions,
             :point_submissions => :league_point_category,
-            :league_position => []
+            :league_positions => []
           }
         },
         :point_submissions => [ :league_player, :league_point_category ]

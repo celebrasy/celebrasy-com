@@ -7,10 +7,12 @@ class Seeds
     PointSubmission.destroy_all
     RosterSlot.destroy_all
     Team.destroy_all
+    LeaguePlayersLeaguePosition.delete_all
     LeaguePlayer.destroy_all
     LeaguePointCategory.destroy_all
     LeaguePosition.destroy_all
     League.destroy_all
+    PlayersPosition.delete_all
     Player.destroy_all
     PointCategory.destroy_all
     Position.destroy_all

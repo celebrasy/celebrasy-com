@@ -30,7 +30,7 @@ class Seeds
 
         league_template.players.create!({
           name: name,
-          position: Position.find_by!({ title: pos })
+          positions: [Position.find_by!({ title: pos })]
         })
       end
 

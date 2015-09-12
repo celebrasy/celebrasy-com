@@ -15,7 +15,7 @@ RSpec.describe RosterManager do
   describe "#set_roster" do
     it "creates active roster slots" do
       player = league.players.shuffle.first
-      roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_position })]
+      roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_positions.first })]
       roster_manager.set_roster(roster_slots)
 
       expect(team.roster_slots.count).to eq(1)
@@ -43,7 +43,7 @@ RSpec.describe RosterManager do
 
       it 'is valid, without deleting existing slots' do
         player = league.players.shuffle.first
-        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_position })]
+        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_positions.first })]
         roster_manager.set_roster(roster_slots)
 
         roster_slots = [RosterSlot.new({ league_player: mel_gibson, league_position: reality_star })]
@@ -67,9 +67,9 @@ RSpec.describe RosterManager do
 
       it 'does not block players on my own team' do
         player = league.players.shuffle.first
-        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_position })]
+        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_positions.first })]
         roster_manager.set_roster(roster_slots)
-        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_position })]
+        roster_slots = [RosterSlot.new({ league_player: player, league_position: player.league_positions.first })]
         roster_manager.set_roster(roster_slots)
 
         expect(team.roster_slots.count).to eq(1)

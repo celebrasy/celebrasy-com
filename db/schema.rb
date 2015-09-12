@@ -19,15 +19,21 @@ ActiveRecord::Schema.define(version: 20150903171250) do
   create_table "league_players", force: :cascade do |t|
     t.string   "name"
     t.integer  "league_id"
-    t.integer  "league_position_id"
     t.integer  "player_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "league_players", ["league_id"], name: "index_league_players_on_league_id", using: :btree
-  add_index "league_players", ["league_position_id"], name: "index_league_players_on_league_position_id", using: :btree
   add_index "league_players", ["player_id"], name: "index_league_players_on_player_id", using: :btree
+
+  create_table "league_players_league_positions", force: :cascade do |t|
+    t.integer "league_player_id"
+    t.integer "league_position_id"
+  end
+
+  add_index "league_players_league_positions", ["league_player_id"], name: "index_league_players_league_positions_on_league_player_id", using: :btree
+  add_index "league_players_league_positions", ["league_position_id"], name: "index_league_players_league_positions_on_league_position_id", using: :btree
 
   create_table "league_point_categories", force: :cascade do |t|
     t.integer  "league_id"
@@ -73,13 +79,19 @@ ActiveRecord::Schema.define(version: 20150903171250) do
   create_table "players", force: :cascade do |t|
     t.string   "name"
     t.integer  "league_template_id"
-    t.integer  "position_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
   add_index "players", ["league_template_id"], name: "index_players_on_league_template_id", using: :btree
-  add_index "players", ["position_id"], name: "index_players_on_position_id", using: :btree
+
+  create_table "players_positions", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "position_id"
+  end
+
+  add_index "players_positions", ["player_id"], name: "index_players_positions_on_player_id", using: :btree
+  add_index "players_positions", ["position_id"], name: "index_players_positions_on_position_id", using: :btree
 
   create_table "point_categories", force: :cascade do |t|
     t.integer  "league_template_id"
@@ -145,16 +157,18 @@ ActiveRecord::Schema.define(version: 20150903171250) do
 
   add_index "teams", ["league_id"], name: "index_teams_on_league_id", using: :btree
 
-  add_foreign_key "league_players", "league_positions"
   add_foreign_key "league_players", "leagues"
   add_foreign_key "league_players", "players"
+  add_foreign_key "league_players_league_positions", "league_players"
+  add_foreign_key "league_players_league_positions", "league_positions"
   add_foreign_key "league_point_categories", "leagues"
   add_foreign_key "league_point_categories", "point_categories"
   add_foreign_key "league_positions", "leagues"
   add_foreign_key "league_positions", "positions"
   add_foreign_key "leagues", "league_templates"
   add_foreign_key "players", "league_templates"
-  add_foreign_key "players", "positions"
+  add_foreign_key "players_positions", "players"
+  add_foreign_key "players_positions", "positions"
   add_foreign_key "point_categories", "league_templates"
   add_foreign_key "point_submissions", "league_players"
   add_foreign_key "point_submissions", "league_point_categories"
