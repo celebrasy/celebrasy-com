@@ -21,7 +21,8 @@ class PlayersController < ApplicationController
         league_point_categories: [],
         players: {
           league_positions: [],
-          point_submissions: [:league_point_category]
+          point_submissions: [:league_point_category],
+          team: []
         },
       }).find(params[:league_id])
     end
