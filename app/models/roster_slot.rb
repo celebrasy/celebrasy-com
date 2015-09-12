@@ -8,7 +8,7 @@ class RosterSlot < ActiveRecord::Base
   before_create :set_defaults
 
   def set_defaults
-    self.active_at = Time.now
+    self.active_at ||= Time.now
   end
 
   def league_player
@@ -17,5 +17,10 @@ class RosterSlot < ActiveRecord::Base
     @league_player = super
     @league_player.playing_as = self.league_position if @league_player
     @league_player
+  end
+
+  def inactivate!(date = Time.now)
+    self.inactive_at = date
+    inactive!
   end
 end

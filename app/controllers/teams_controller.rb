@@ -54,7 +54,7 @@ class TeamsController < ApplicationController
         },
         :point_submissions => [ :league_player, :league_point_category ]
       ).find(params[:id])
-      @roster_slots = @team.roster_slots
+      @roster_slots = @team.roster_slots.active
     end
 
     def team_params

@@ -8,6 +8,6 @@ class Team < ActiveRecord::Base
   include HasPoints
 
   def league_players
-    self.roster_slots.map(&:league_player)
+    self.roster_slots.active.map(&:league_player)
   end
 end

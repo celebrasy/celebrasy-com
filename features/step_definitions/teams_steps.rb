@@ -27,8 +27,8 @@ When(/^I edit that team$/) do
 end
 
 When(/^I setup a valid player change$/) do
-  joan = @team.roster_slots.find { |rs| rs.league_player.name == "Joan Rivers" }
-  dakota = @team.roster_slots.find { |rs| rs.league_player.name == "Elle Fanning" }
+  joan = @team.roster_slots.active.find { |rs| rs.league_player.name == "Joan Rivers" }
+  dakota = @team.roster_slots.active.find { |rs| rs.league_player.name == "Mary Kate Olsen" }
   expect(page).to have_content(dakota.league_player.name)
 
   within ".roster-slot-#{joan.id}" do
@@ -41,7 +41,7 @@ When(/^I setup a valid player change$/) do
 end
 
 When(/^I setup an invalid player change$/) do
-  snooki = @team.roster_slots.find { |rs| rs.league_player.name == "Snooki" }
+  snooki = @team.roster_slots.active.find { |rs| rs.league_player.name == "Snooki" }
   within ".roster-slot-#{snooki.id}" do
     page.find("select").select("Miscellaneous")
   end
@@ -54,7 +54,7 @@ Then(/^I see why the change was invalid$/) do
 end
 
 Then(/^I should see that team's players$/) do
-  @team.roster_slots.each do |roster_slot|
+  @team.roster_slots.active.each do |roster_slot|
     expect(page).to have_content(roster_slot.league_player.name)
     expect(page).to have_content(roster_slot.league_position.title)
   end
@@ -74,13 +74,13 @@ Then(/^I should be on the team show page$/) do
 end
 
 Then(/^my team is updated$/) do
-  before = @team.roster_slots.map(&:id)
+  before = @team.roster_slots.active.map(&:id)
   page.click_button("Update Team")
 
   expect(page).to have_content("Edit Roster")
   expect(current_url).to match(%r{leagues/#{@league.id}/teams/#{@team.id}$})
 
-  after = Team.find(@team.id).roster_slots.map(&:id)
+  after = Team.find(@team.id).roster_slots.active.map(&:id)
   expect(before).to_not eq(after)
 end
 
@@ -104,9 +104,19 @@ end
 
 When(/^I drop a "(.*?)"$/) do |pos|
   position = LeaguePosition.find_by(title: pos)
-  roster_slot = @team.roster_slots.find { |rs| rs.league_position == position }
+  roster_slot = @team.roster_slots.active.find { |rs| rs.league_position == position }
 
   within(page.find('td', text: roster_slot.league_player.name).first(:xpath,".//..")) do
     page.first("select").select("Drop")
+  end
+end
+
+Then(/^I should see that team's roster history$/) do
+  expect(@team.roster_slots.count).to eq(11)
+  within('table.roster-history') do
+    within(page.find('td', text: "Dakota Fanning").first(:xpath,".//..")) do
+      expect(page).to have_content("inactive")
+      expect(page).to have_content("06/30/2015")
+    end
   end
 end

@@ -40,3 +40,8 @@ Feature: Teams
     And I add that new player
     Then my team is updated
     And I should see that new player
+
+  Scenario: Can see a roster history
+    Given the BadCeleb League seeds have been run
+    When I go to a team
+    Then I should see that team's roster history

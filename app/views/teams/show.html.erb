@@ -32,13 +32,13 @@
     >
       <thead>
         <tr>
-          <th aria-label="Date">Date</th>
-          <th aria-label="Player">Player</th>
-          <th aria-label="Caegory">Caegory</th>
-          <th aria-label="Action">Action</th>
-          <th aria-label="Points">Points</th>
-          <th aria-label="Status">Status</th>
-          <th aria-label="Proof">Proof</th>
+          <th>Date</th>
+          <th>Player</th>
+          <th>Caegory</th>
+          <th>Action</th>
+          <th>Points</th>
+          <th>Status</th>
+          <th>Proof</th>
         </tr>
       </thead>
       <tbody>
@@ -51,6 +51,46 @@
             <td><%= point_submission.points %></td>
             <td><%= point_submission.status %></td>
             <td><%= link_to point_submission.proof_url, point_submission.proof_url, :target => :blank %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="portlet portlet-default">
+    <div class="portlet-header">
+      <h4 class="portlet-title">
+        Roster History
+      </h4>
+    </div>
+
+    <table
+      class="table table-striped table-bordered table-hover ui-datatable roster-history"
+      data-paging=true
+      data-ordering=true
+      data-order="[[ 2, &quot;asc&quot; ]]"
+      data-length-change=false
+      data-info=false
+      data-searching=true
+    >
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Position</th>
+          <th>Status</th>
+          <th>Active At</th>
+          <th>Inactive At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @team.roster_slots.each do |roster_slot| %>
+          <tr>
+            <td><%= roster_slot.league_player.name %></td>
+            <td><%= roster_slot.league_position.title %></td>
+            <td><%= roster_slot.status %></td>
+            <td><%= roster_slot.active_at.strftime('%m/%d/%Y') %></td>
+            <td><%= roster_slot.inactive_at.try(:strftime, '%m/%d/%Y') %></td>
           </tr>
         <% end %>
       </tbody>

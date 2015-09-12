@@ -61,6 +61,7 @@ class Seeds
 
         roster_assignments[team] ||= []
         roster_assignments[team] << RosterSlot.new({
+          active_at: Date.parse('2010-03-01'),
           league_player: player,
           league_position: position
         })
@@ -74,17 +75,17 @@ class Seeds
     def self.transact_team_changes(league)
       CSV.foreach("db/seeds/bad_celebs/transactions.csv") do |(date, type, owner, dropping, adding, pos)|
         if type == "Trade"
-          trade(league, owner, dropping, adding, pos)
+          trade(league, date, owner, dropping, adding, pos)
           next
         elsif type == "Swap"
-          swap(league, owner, dropping, adding)
+          swap(league, date, owner, dropping, adding)
           next
         end
 
         existing = league.players.find_by!({ name: dropping })
 
         team = Team.find_by!(owner: owner)
-        removing = team.roster_slots.find { |rs| rs.league_player.id == existing.id }
+        removing = team.roster_slots.active.find { |rs| rs.league_player.id == existing.id }
         player = league.players.find_by({ name: adding })
         if player.nil?
           player = league.players.create!({
@@ -98,45 +99,60 @@ class Seeds
         end
 
         roster_slots = []
-        team.roster_slots.each do |rs|
+        team.roster_slots.active.each do |rs|
           next if rs.league_player == existing
-          roster_slots << RosterSlot.new(league_player_id: rs.league_player_id, league_position_id: rs.league_position_id)
+          roster_slots << RosterSlot.new(
+            league_player_id: rs.league_player_id,
+            league_position_id: rs.league_position_id
+          )
         end
-        roster_slots << RosterSlot.new(league_player_id: player.id, league_position_id: removing.league_position_id)
+        roster_slots << RosterSlot.new(
+          active_at: Date.parse(date),
+          league_player_id: player.id,
+          league_position_id: removing.league_position_id
+        )
 
         begin
-          RosterManager.new(team).set_roster(roster_slots)
+          RosterManager.new(team, active_at: Date.parse(date),).set_roster(roster_slots)
         rescue RosterManager::InvalidRoster => ex
         end
       end
     end
 
-    def self.trade(league, owner1, player1_name, owner2, player2_name)
+    def self.trade(league, date, owner1, player1_name, owner2, player2_name)
       team1 = Team.find_by!({ owner: owner1 })
       team2 = Team.find_by!({ owner: owner2 })
 
       player1 = league.players.find_by!({ name: player1_name })
       player2 = league.players.find_by!({ name: player2_name })
 
-      TradeManager.new(team1, team2).trade(player1, player2)
+      TradeManager.new(team1, team2, active_at: Date.parse(date)).trade(player1, player2)
     end
 
-    def self.swap(league, owner, player1_name, player2_name)
+    def self.swap(league, date, owner, player1_name, player2_name)
       team = Team.find_by!({ owner: owner })
       player1 = league.players.find_by!({ name: player1_name })
       player2 = league.players.find_by!({ name: player2_name })
 
-      player1_slot = team.roster_slots.find { |rs| rs.league_player == player1 }
-      player2_slot = team.roster_slots.find { |rs| rs.league_player == player2 }
+      player1_slot = team.roster_slots.active.find { |rs| rs.league_player == player1 }
+      player2_slot = team.roster_slots.active.find { |rs| rs.league_player == player2 }
 
-      roster_slots = team.roster_slots.map do |rs|
+      roster_slots = team.roster_slots.active.map do |rs|
         next if rs.league_player == player1 || rs.league_player == player2
 
         RosterSlot.new(league_player: rs.league_player, league_position: rs.league_position)
       end.compact
 
-      roster_slots << RosterSlot.new(league_player: player1, league_position: player2_slot.league_position)
-      roster_slots << RosterSlot.new(league_player: player2, league_position: player1_slot.league_position)
+      roster_slots << RosterSlot.new(
+        active_at: Date.parse(date),
+        league_player: player1,
+        league_position: player2_slot.league_position
+      )
+      roster_slots << RosterSlot.new(
+        active_at: Date.parse(date),
+        league_player: player2,
+        league_position: player1_slot.league_position
+      )
 
       RosterManager.new(team).set_roster(roster_slots)
     end

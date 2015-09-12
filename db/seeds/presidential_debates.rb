@@ -72,10 +72,5 @@ class Seeds
         RosterManager.new(team).set_roster([r1, r2])
       end
     end
-
-    def self.delete_things
-      Team.destroy_all
-      RosterSlot.destroy_all
-    end
   end
 end

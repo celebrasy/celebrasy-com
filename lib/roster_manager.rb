@@ -15,20 +15,33 @@ class RosterManager
       validate_player_position(roster_slot)
     end
 
-    delete_all_existing_slots
+    delete_necessary_slots(roster_slots)
+    new_roster_slots = prune_existing_roster_slots(roster_slots)
 
-    @team.update(roster_slots: roster_slots)
+    @team.roster_slots << new_roster_slots
   end
 
   private
 
-  def delete_all_existing_slots
-    @team.roster_slots.destroy_all
+  def delete_necessary_slots(incoming_roster_slots)
+    roster_slots_to_delete = @team.roster_slots.active.select do |roster_slot|
+      incoming_roster_slots.none? { |rs| roster_slot.league_player_id == rs.league_player_id && roster_slot.league_position_id == rs.league_position_id}
+    end
+
+    if @options[:active_at]
+      roster_slots_to_delete.map { |rs| rs.inactivate!(@options[:active_at]) }
+    else
+      roster_slots_to_delete.map(&:inactivate!)
+    end
+  end
+
+  def prune_existing_roster_slots(roster_slots)
+    roster_slots.select do |roster_slot|
+      @team.roster_slots.active.none? { |rs| roster_slot.league_player_id == rs.league_player_id && roster_slot.league_position_id == rs.league_position_id}
+    end
   end
 
   def validate_league_roster_positions(roster_slots)
-    return if @options[:skip_validations]
-
     count_by_position(roster_slots).each do |position, requested_count|
       allowed_count = @league.positions.find(position.id).count
       if requested_count > allowed_count
@@ -38,9 +51,7 @@ class RosterManager
   end
 
   def validate_player_is_available(roster_slot)
-    return if @options[:skip_validations]
-
-    existing_slot = RosterSlot.find_by({ league_player_id: roster_slot.league_player_id })
+    existing_slot = RosterSlot.active.find_by({ league_player_id: roster_slot.league_player_id })
 
     if existing_slot && existing_slot.team != @team
       raise(InvalidRoster, "#{roster_slot.league_player.name} is already on #{existing_slot.team.title}'s roster") 

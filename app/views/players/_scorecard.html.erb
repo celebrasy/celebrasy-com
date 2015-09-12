@@ -14,15 +14,15 @@
 >
   <thead>
     <tr>
-      <th aria-label="Player">Player</th>
-      <th aria-label="Position">Position</th>
+      <th>Player</th>
+      <th>Position</th>
       <% if show_team %>
-        <th aria-label="Team">Team</th>
+        <th>Team</th>
       <% end %>
       <% @league.point_category_groups.each do |group| %>
         <th><%= group.capitalize %></th>
       <% end %>
-      <th aria-label="Total Points">Total Points</th>
+      <th>Total Points</th>
     </tr>
   </thead>
   <tbody>

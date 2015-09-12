@@ -9,9 +9,9 @@ RSpec.describe TradeManager do
 
   let(:athlete_position) { league.positions.find_by({ title: 'Athlete' }) }
   let(:musician_position) { league.positions.find_by({ title: 'Musician' }) }
-  let(:team1_athlete) { team1.roster_slots.find_by({ league_position_id: athlete_position.id }).league_player }
-  let(:team2_athlete) { team2.roster_slots.find_by({ league_position_id: athlete_position.id }).league_player }
-  let(:team2_musician) { team2.roster_slots.find_by({ league_position_id: musician_position.id }).league_player }
+  let(:team1_athlete) { team1.roster_slots.active.find_by({ league_position_id: athlete_position.id }).league_player }
+  let(:team2_athlete) { team2.roster_slots.active.find_by({ league_position_id: athlete_position.id }).league_player }
+  let(:team2_musician) { team2.roster_slots.active.find_by({ league_position_id: musician_position.id }).league_player }
 
   it "executes a valid 1 for 1 exchange" do
     trade_manager.trade(team1_athlete, team2_athlete)
