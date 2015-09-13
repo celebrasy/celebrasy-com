@@ -3,19 +3,19 @@ default: &default
   encoding: unicode
   pool: 5
 
-development:
-  <<: *default
-  database: celebrasy_development
-
 test: &test
   <<: *default
   database: celebrasy_test
 
-production:
+development:
   <<: *default
-  database: celebrasy_production
-  #username: celebrasy
-  #password: <%= ENV['CELEBRASY_DATABASE_PASSWORD'] %>
+  database: celebrasy_development
 
 cucumber:
   <<: *test
+
+production:
+  database: celebrasy_production
+  host: dockerpg
+  username: postgres
+  password:
