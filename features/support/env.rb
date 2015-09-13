@@ -26,4 +26,5 @@ Capybara.default_driver = Capybara.javascript_driver = (headless ? :poltergeist 
 
 Before do
   Seeds::BadCelebs.seed!
+  PointSubmission.destroy_all
 end
