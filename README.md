@@ -16,7 +16,18 @@ git clone git@github.com:celebrasy/celebrasy-com.git
 cd celebrasy-com
 bundle
 rake db:create db:migrate db:seed:all
+RACK_ENV=test rake db:create db:migrate
 bin/rspec && bin/cucumber
 foreman start
 open http://localhost:3000/leagues/1/teams
+```
+
+### Docker Locally
+
+* [Docker Toolbox](https://www.docker.com/toolbox)
+
+```
+docker build -t celebrasy:{local-version} .
+docker run -d -p 8080:3000 --name celebrasy celebrasy:3
+curl $(docker-machine ip default):8080
 ```
