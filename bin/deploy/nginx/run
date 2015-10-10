@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-TAG="celebrasy-nginx:$(git rev-parse HEAD)"
+TAG="celebrasy/nginx:f4ced48d0d1fe07eedb67be99ff9c65834db3b76"
 NAME=celebrasy-nginx
 docker stop $NAME
 docker rm $NAME
 docker run \
   --name $NAME \
   --link celebrasy-com:celebrasy-com \
-  -v /celebrasy/docker/nginx/certs:/etc/nginx/certs \
   -d \
   -p 80:80 \
   -p 443:443 \
