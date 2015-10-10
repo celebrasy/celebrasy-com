@@ -6,16 +6,15 @@ default: &default
 development:
   <<: *default
   database: celebrasy_development
+  url: <%= ENV["DATABASE_URL"] %>
 
 test: &test
   <<: *default
   database: celebrasy_test
+  url: <%= ENV["DATABASE_URL"] %>
 
 production:
   <<: *default
-  database: celebrasy_production
-  #username: celebrasy
-  #password: <%= ENV['CELEBRASY_DATABASE_PASSWORD'] %>
 
 cucumber:
   <<: *test

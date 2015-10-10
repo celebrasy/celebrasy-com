@@ -1,12 +1,12 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.2.1
-before_script:
-  - RAILS_ENV=test bundle exec rake db:create db:migrate
-script:
-  - bundle exec bin/rspec
-  - HEADLESS=true bundle exec bin/cucumber
+  - 2.2.3
+script: >
+  DATABASE_URL=postgres://localhost/celebrasy-ci
+  HEADLESS=true
+  RACK_ENV=test
+  bin/rake db:create db:migrate test
 addons:
   code_climate:
     repo_token: 97d1ac04ffd9a627187c971bd18d9e4367da327ac5512fb3b835234bf57ffbf1
