@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 NAME=celebrasy-com
-docker exec -it $NAME bundle exec rake db:create db:migrate
+docker exec -it $NAME RACK_ENV=production bundle exec rake db:seed:all
+docker exec -it $NAME /bin/bash

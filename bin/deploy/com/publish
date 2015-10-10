@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TAG="celebrasy:$(git rev-parse HEAD)"
+TAG="celebrasy/com:$(git rev-parse HEAD)"
 REMOTE_IMAGE_NAME="com:$(git rev-parse HEAD)"
 DOCKER_EMAIL=gmassanek@gmail.com
 DOCKER_USERNAME=gmassanek

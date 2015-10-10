@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-TAG="celebrasy/com:4799f81f5d305cc7b131eab8cd2e96b7c545bf37"
+TAG="celebrasy/com:$(git rev-parse HEAD)"
 NAME="celebrasy-com"
-DATABASE_URL=postgres://postgres/celebrasy_prod
 
-docker stop $NAME
-docker rm $NAME
+docker stop $NAME && docker rm $NAME
 
 docker run \
   --name $NAME \
   --link celebrasy-db:postgres \
+  -e DATABASE_URL=postgres://postgres@postgres/celebrasy_prod \
+  -e RACK_ENV=production \
+  -e SECRET_KEY_BASE=83fd9e4989ea2d02482f3567ea7c168611021fb1696c8046eb909519d6fd7180a845ca08f0061d49a4ffdd965a7fe7c1c5a27b125b349da0ec2ab74907eb530b \
   -d \
   -p 8000:9292 \
   $TAG

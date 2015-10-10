@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-TAG="celebrasy:$(git rev-parse HEAD)"
+TAG="celebrasy/com:$(git rev-parse HEAD)"
 docker build -t $TAG .

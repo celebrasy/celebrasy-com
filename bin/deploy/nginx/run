@@ -7,7 +7,6 @@ docker rm $NAME
 docker run \
   --name $NAME \
   --link celebrasy-com:celebrasy-com \
-  -v /celebrasy/docker/nginx/certs:/etc/nginx/certs \
   -d \
   -p 80:80 \
   -p 443:443 \

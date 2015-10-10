@@ -17,6 +17,17 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
+//= require jquery.slimscroll.min
+//= require mvpready-core
+//= require mvpready-helpers
+//= require mvpready-admin
+//= require jquery.flot
+//= require jquery.flot.pie
+//= require jquery.flot.resize
+//= require jquery.flot.time
+//= require jquery.flot.stack
+//= require jquery.flot.categories
+//= require jquery.flot.tooltip
 //= require_tree .
 
 
