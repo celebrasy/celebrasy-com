@@ -13,5 +13,4 @@
 /tmp
 .DS_Store
 
-nginx/public
 public/assets
