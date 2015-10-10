@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+mkdir -p /celebrasy/docker/nginx/certs
+mkdir -p /celebrasy/docker/postgres/data

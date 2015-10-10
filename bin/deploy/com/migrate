@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+NAME=celebrasy-com
+docker exec -it $NAME bin/rake db:create db:migrate

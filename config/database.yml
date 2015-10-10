@@ -10,7 +10,6 @@ development:
 
 test: &test
   <<: *default
-  database: celebrasy_test
   url: <%= ENV["DATABASE_URL"] %>
 
 production:

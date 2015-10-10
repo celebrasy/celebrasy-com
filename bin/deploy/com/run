@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+TAG="celebrasy:$(git rev-parse HEAD)"
+NAME=celebrasy
+
+docker stop $NAME
+docker rm $NAME
+
+docker run \
+  --name $NAME \
+  --link celebrasy-db:postgres \
+  --env-file .env.production \
+  -d \
+  -p 8000:9292 \
+  $TAG

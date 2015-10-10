@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+docker run \
+  --name celebrasy-db \
+  -v /celebrasy/docker/postgres/data:/var/lib/postgresql/data \
+  -d \
+  postgres
