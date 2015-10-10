@@ -17,11 +17,12 @@ gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'bootstrap-sass', '~> 3.3.5'
 
 group :development, :test do
-  gem 'byebug'
+  gem "dotenv"
+  gem "ffaker"
   gem "rspec-rails", "~> 3.0"
   gem "spring"
   gem "web-console", "~> 2.0"
-  gem "ffaker"
+  gem 'byebug'
 end
 
 group :development do

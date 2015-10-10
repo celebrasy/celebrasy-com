@@ -3,5 +3,6 @@
 docker run \
   --name celebrasy-db \
   -v /celebrasy/docker/postgres/data:/var/lib/postgresql/data \
+  -p 5432:5432 \
   -d \
   postgres
