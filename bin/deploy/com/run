@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TAG="celebrasy/com:$(git rev-parse HEAD)"
+TAG="celebrasy/com:e1a3a503720fe581fa483ce0b5771a8f164af751"
 NAME="celebrasy-com"
 
 docker stop $NAME && docker rm $NAME

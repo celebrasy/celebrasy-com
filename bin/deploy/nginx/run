@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TAG="celebrasy-nginx:$(git rev-parse HEAD)"
+TAG="celebrasy/nginx:e1a3a503720fe581fa483ce0b5771a8f164af751"
 NAME=celebrasy-nginx
 docker stop $NAME
 docker rm $NAME

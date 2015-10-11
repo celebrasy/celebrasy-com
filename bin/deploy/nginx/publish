@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+TAG="celebrasy/nginx:$(git rev-parse HEAD)"
+REMOTE_IMAGE_NAME="nginx:$(git rev-parse HEAD)"
+DOCKER_EMAIL=gmassanek@gmail.com
+DOCKER_USERNAME=gmassanek
+DOCKER_PASSWORD=mass2742
+
+docker login \
+  -e $DOCKER_EMAIL \
+  -u $DOCKER_USERNAME \
+  -p $DOCKER_PASSWORD
+
+docker tag -f $TAG "celebrasy/${REMOTE_IMAGE_NAME}"
+docker push celebrasy/nginx
